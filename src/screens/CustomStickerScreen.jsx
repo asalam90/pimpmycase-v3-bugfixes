@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppState } from '../contexts/AppStateContext'
 import MaskedPhoneDisplay from '../components/MaskedPhoneDisplay'
-import OptimizedDraggableSticker from '../components/OptimizedDraggableSticker'
+import KonvaStickerCanvas from '../components/KonvaStickerCanvas'
 import { useMaskedBounds } from '../hooks/useMaskedBounds'
 
 const CustomStickerScreen = () => {
@@ -283,24 +283,22 @@ const CustomStickerScreen = () => {
             height={416}
             modelName={selectedModelData?.model_name || model}
             ref={overlayRef}
-          >
-            {/* Placed Stickers */}
-            {appState.placedStickers?.map((sticker) => (
-              <OptimizedDraggableSticker
-                key={sticker.placedId}
-                sticker={sticker}
-                isSelected={selectedStickerForEdit === sticker.placedId}
-                onSelect={handleStickerSelect}
-                onMove={handleStickerMove}
-                onResize={handleStickerResize}
-                onRotate={handleStickerRotate}
-                onDelete={handleStickerDelete}
-                containerRect={getContainerRect()}
-                maskedBounds={maskedBounds}
-                overlayRef={overlayRef}
-              />
-            ))}
-          </MaskedPhoneDisplay>
+          />
+
+          {/* KONVA STICKER CANVAS - Proper clipping and transform handles */}
+          <KonvaStickerCanvas
+            stickers={appState.placedStickers || []}
+            selectedStickerId={selectedStickerForEdit}
+            onStickerSelect={handleStickerSelect}
+            onStickerMove={handleStickerMove}
+            onStickerResize={handleStickerResize}
+            onStickerRotate={handleStickerRotate}
+            onStickerDelete={handleStickerDelete}
+            phoneModel={selectedModelData?.model_name || model}
+            containerWidth={250}
+            containerHeight={416}
+            maskedBounds={maskedBounds}
+          />
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppState } from '../contexts/AppStateContext'
 import MaskedPhoneDisplay from '../components/MaskedPhoneDisplay'
-import OptimizedDraggableSticker from '../components/OptimizedDraggableSticker'
+import KonvaStickerCanvas from '../components/KonvaStickerCanvas'
 import { useMaskedBounds } from '../hooks/useMaskedBounds'
 import { composeFinalImage } from '../utils/finalImageComposer'
 
@@ -252,24 +252,25 @@ const AddOnsScreen = () => {
             height={416}
             modelName={location.state?.selectedModelData?.model_name || location.state?.model}
             ref={overlayRef}
-          >
-            {/* Placed Stickers - Using same component for exact consistency */}
-            {appState.placedStickers.map((sticker) => (
-              <OptimizedDraggableSticker
-                key={sticker.placedId}
-                sticker={sticker}
-                isSelected={false}
-                onSelect={() => {}}
-                onMove={() => {}}
-                onResize={() => {}}
-                onRotate={() => {}}
-                onDelete={() => {}}
-                containerRect={getContainerRect()}
-                maskedBounds={maskedBounds}
-                overlayRef={overlayRef}
-              />
-            ))}
+          />
 
+          {/* KONVA STICKER CANVAS - Display only */}
+          <KonvaStickerCanvas
+            stickers={appState.placedStickers || []}
+            selectedStickerId={null}
+            onStickerSelect={() => {}}
+            onStickerMove={() => {}}
+            onStickerResize={() => {}}
+            onStickerRotate={() => {}}
+            onStickerDelete={() => {}}
+            phoneModel={location.state?.selectedModelData?.model_name || location.state?.model}
+            containerWidth={250}
+            containerHeight={416}
+            maskedBounds={maskedBounds}
+          />
+
+          {/* Text Elements - Overlay div */}
+          <div style={{ position: 'absolute', top: 0, left: 0, width: 250, height: 416, pointerEvents: 'none', zIndex: 20 }}>
             {/* Text Elements */}
             {textElements.map((textElement) => (
               <div
@@ -299,7 +300,7 @@ const AddOnsScreen = () => {
                 </div>
               </div>
             ))}
-          </MaskedPhoneDisplay>
+          </div>
         </div>
       </div>
 

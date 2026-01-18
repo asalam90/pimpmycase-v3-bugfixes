@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppState } from '../contexts/AppStateContext'
 import MaskedPhoneDisplay from '../components/MaskedPhoneDisplay'
 import OptimizedDraggableText from '../components/OptimizedDraggableText'
-import OptimizedDraggableSticker from '../components/OptimizedDraggableSticker'
+import KonvaStickerCanvas from '../components/KonvaStickerCanvas'
 import { useMaskedBounds } from '../hooks/useMaskedBounds'
 import { usePinchToScale } from '../hooks/usePinchToScale'
 
@@ -544,24 +544,36 @@ const TextInputScreen = () => {
             height={416}
             modelName={selectedModelData?.model_name || model}
             ref={overlayRef}
-          >
-            {/* Placed Stickers - Using same component as CustomStickerScreen for exact consistency */}
-            {appState.placedStickers?.map((sticker) => (
-              <OptimizedDraggableSticker
-                key={sticker.placedId}
-                sticker={sticker}
-                isSelected={false}
-                onSelect={() => {}}
-                onMove={() => {}}
-                onResize={() => {}}
-                onRotate={() => {}}
-                onDelete={() => {}}
-                containerRect={getContainerRect()}
-                maskedBounds={maskedBounds}
-                overlayRef={overlayRef}
-              />
-            ))}
+          />
 
+          {/* KONVA STICKER CANVAS - Display only (no editing on text input screen) */}
+          <KonvaStickerCanvas
+            stickers={appState.placedStickers || []}
+            selectedStickerId={null}
+            onStickerSelect={() => {}}
+            onStickerMove={() => {}}
+            onStickerResize={() => {}}
+            onStickerRotate={() => {}}
+            onStickerDelete={() => {}}
+            phoneModel={selectedModelData?.model_name || model}
+            containerWidth={250}
+            containerHeight={416}
+            maskedBounds={maskedBounds}
+          />
+
+          {/* Text Elements - Rendered on top in a separate div */}
+          <div
+            ref={overlayRef}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: 250,
+              height: 416,
+              pointerEvents: 'auto',
+              zIndex: 20
+            }}
+          >
             {/* Text Elements */}
             {textElements.map((textElement) => (
               <OptimizedDraggableText
@@ -583,7 +595,7 @@ const TextInputScreen = () => {
                 overlayRef={overlayRef}
               />
             ))}
-          </MaskedPhoneDisplay>
+          </div>
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppState } from '../contexts/AppStateContext'
 import MaskedPhoneDisplay from '../components/MaskedPhoneDisplay'
-import OptimizedDraggableSticker from '../components/OptimizedDraggableSticker'
+import KonvaStickerCanvas from '../components/KonvaStickerCanvas'
 import { getImageStickerPacks, preloadStickerPack } from '../utils/stickerLoader'
 import { useMaskedBounds } from '../hooks/useMaskedBounds'
 import { usePinchToScale } from '../hooks/usePinchToScale'
@@ -308,7 +308,7 @@ const AddStickersScreen = () => {
           }}
           onClick={() => setSelectedStickerForEdit(null)}
         >
-          {/* Camera-aware phone case with masking */}
+          {/* Camera-aware phone case with masking - NO children, stickers rendered separately */}
           <MaskedPhoneDisplay
             image={appState.uploadedImages.length > 1 ? appState.uploadedImages : (appState.uploadedImages.length > 0 ? appState.uploadedImages[0] : null)}
             transform={appState.uploadedImages.length > 1 ? appState.imageTransforms : (appState.transform || (appState.imageTransforms && appState.imageTransforms[0]))}
@@ -316,24 +316,23 @@ const AddStickersScreen = () => {
             height={416}
             modelName={selectedModelData?.model_name || model}
             ref={overlayRef}
-          >
-            {/* Placed stickers - above masked image */}
-            {appState.placedStickers.map((sticker) => (
-              <OptimizedDraggableSticker
-                key={sticker.placedId}
-                sticker={sticker}
-                isSelected={selectedStickerForEdit === sticker.placedId}
-                onSelect={setSelectedStickerForEdit}
-                onMove={handleStickerMove}
-                onResize={handleStickerResize}
-                onRotate={handleStickerRotate}
-                onDelete={handleStickerDelete}
-                containerRect={getContainerRect()}
-                maskedBounds={maskedBounds}
-                overlayRef={overlayRef}
-              />
-            ))}
-          </MaskedPhoneDisplay>
+          />
+
+          {/* KONVA STICKER CANVAS - Replaces SVG foreignObject approach */}
+          {/* This renders on TOP of MaskedPhoneDisplay with proper clipping */}
+          <KonvaStickerCanvas
+            stickers={appState.placedStickers}
+            selectedStickerId={selectedStickerForEdit}
+            onStickerSelect={setSelectedStickerForEdit}
+            onStickerMove={handleStickerMove}
+            onStickerResize={handleStickerResize}
+            onStickerRotate={handleStickerRotate}
+            onStickerDelete={handleStickerDelete}
+            phoneModel={selectedModelData?.model_name || model}
+            containerWidth={250}
+            containerHeight={416}
+            maskedBounds={maskedBounds}
+          />
         </div>
       </div>
 

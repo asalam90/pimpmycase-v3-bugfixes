@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppState } from '../contexts/AppStateContext'
 import MaskedPhoneDisplay from '../components/MaskedPhoneDisplay'
-import OptimizedDraggableSticker from '../components/OptimizedDraggableSticker'
+// Stickers rendered as simple divs for preview (non-interactive)
 import { useMaskedBounds } from '../hooks/useMaskedBounds'
 import { getPhoneBackImage, getDisplayMaskImage, getPhoneDimensions, getMaskPosition } from '../utils/phoneCaseLayout'
 
