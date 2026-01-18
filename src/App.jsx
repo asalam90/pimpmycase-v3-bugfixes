@@ -38,10 +38,8 @@ import VendingPaymentSuccessScreen from './screens/VendingPaymentSuccessScreen'
 function App() {
   return (
     <AppStateProvider>
-      {/* Mobile-first container - constrains app to phone-sized viewport on desktop */}
-      <div className="mobile-app-container">
-        <div className="App">
-          <Routes>
+      <div className="App">
+        <Routes>
           <Route path="/" element={<LandingScreen />} />
           <Route path="/qr" element={<QRScreen />} />
           <Route path="/phone-brand" element={<BrandModelSelectionScreen />} />
@@ -77,7 +75,6 @@ function App() {
           <Route path="/vending-payment-waiting" element={<VendingPaymentWaitingScreen />} />
           <Route path="/vending-payment-success" element={<VendingPaymentSuccessScreen />} />
         </Routes>
-        </div>
       </div>
     </AppStateProvider>
   )
