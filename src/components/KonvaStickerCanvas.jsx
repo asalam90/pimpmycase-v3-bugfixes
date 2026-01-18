@@ -16,7 +16,7 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Stage, Layer, Image as KonvaImage, Transformer, Group, Shape, Rect } from 'react-konva'
 import useImage from 'use-image'
 import Konva from 'konva'
-import { getClipPathData, getMaskPosition } from '../utils/phoneCaseLayout'
+import { getProfessionalMaskPath, getProfessionalOverlayPath, hasProfessionalMask } from '../utils/phoneCaseLayout'
 
 // Enable touch events
 Konva.hitOnDragEnabled = true
@@ -408,66 +408,31 @@ const KonvaStickerCanvas = ({
   const stageRef = useRef()
   const containerRef = useRef()
 
-  // Get clip path data for this phone model
-  const clipPathData = useMemo(() => getClipPathData(phoneModel), [phoneModel])
-  const maskPosition = useMemo(() => getMaskPosition(phoneModel), [phoneModel])
+  // Get professional PNG mask paths for this phone model
+  const professionalMaskPath = useMemo(() => getProfessionalMaskPath(phoneModel), [phoneModel])
+  const professionalOverlayPath = useMemo(() => getProfessionalOverlayPath(phoneModel), [phoneModel])
+  const hasProfMask = useMemo(() => hasProfessionalMask(phoneModel), [phoneModel])
 
-  // Parse SVG path for clipping
-  const clipCommands = useMemo(() => {
-    if (!clipPathData?.path) return []
-    return parseSvgPath(clipPathData.path)
-  }, [clipPathData])
+  // Load professional PNG mask and overlay using use-image hook
+  const [maskImage, maskStatus] = useImage(professionalMaskPath, 'anonymous')
+  const [overlayImage, overlayStatus] = useImage(professionalOverlayPath, 'anonymous')
 
-  // Calculate clip path scaling
-  const clipScale = useMemo(() => {
-    if (!clipPathData?.viewBox) return { scaleX: 1, scaleY: 1, offsetX: 0, offsetY: 0 }
-
-    const [, , vbWidth, vbHeight] = clipPathData.viewBox.split(' ').map(Number)
-
-    const parsePercent = (str) => parseFloat(str) / 100
-    const maskX = parsePercent(maskPosition.x) * containerWidth
-    const maskY = parsePercent(maskPosition.y) * containerHeight
-    const maskW = parsePercent(maskPosition.width) * containerWidth
-    const maskH = parsePercent(maskPosition.height) * containerHeight
-
-    return {
-      scaleX: maskW / vbWidth,
-      scaleY: maskH / vbHeight,
-      offsetX: maskX,
-      offsetY: maskY
+  // Debug logging for mask loading
+  useEffect(() => {
+    if (maskStatus === 'loaded') {
+      console.log('✅ [StickerCanvas] Professional mask loaded:', professionalMaskPath)
+    } else if (maskStatus === 'failed') {
+      console.warn('❌ [StickerCanvas] Failed to load professional mask:', professionalMaskPath)
     }
-  }, [clipPathData, maskPosition, containerWidth, containerHeight])
+  }, [maskStatus, professionalMaskPath])
 
-  // Clip function for Layer
-  const clipFunction = useCallback((ctx) => {
-    if (clipCommands.length === 0) {
-      // Fallback: rounded rectangle
-      const padding = containerWidth * 0.08
-      const radius = 30
-      ctx.beginPath()
-      ctx.moveTo(padding + radius, padding)
-      ctx.lineTo(containerWidth - padding - radius, padding)
-      ctx.quadraticCurveTo(containerWidth - padding, padding, containerWidth - padding, padding + radius)
-      ctx.lineTo(containerWidth - padding, containerHeight - padding - radius)
-      ctx.quadraticCurveTo(containerWidth - padding, containerHeight - padding, containerWidth - padding - radius, containerHeight - padding)
-      ctx.lineTo(padding + radius, containerHeight - padding)
-      ctx.quadraticCurveTo(padding, containerHeight - padding, padding, containerHeight - padding - radius)
-      ctx.lineTo(padding, padding + radius)
-      ctx.quadraticCurveTo(padding, padding, padding + radius, padding)
-      ctx.closePath()
-      return
+  useEffect(() => {
+    if (overlayStatus === 'loaded') {
+      console.log('✅ [StickerCanvas] Professional overlay loaded:', professionalOverlayPath)
+    } else if (overlayStatus === 'failed') {
+      console.warn('❌ [StickerCanvas] Failed to load professional overlay:', professionalOverlayPath)
     }
-
-    ctx.beginPath()
-    drawSvgPath(
-      ctx,
-      clipCommands,
-      clipScale.scaleX,
-      clipScale.scaleY,
-      clipScale.offsetX,
-      clipScale.offsetY
-    )
-  }, [clipCommands, clipScale, containerWidth, containerHeight])
+  }, [overlayStatus, professionalOverlayPath])
 
   // Handle stage click (deselect)
   const handleStageClick = useCallback((e) => {
@@ -533,37 +498,65 @@ const KonvaStickerCanvas = ({
           left: 0
         }}
       >
-        {/* Clipped Layer - stickers are masked to phone boundary */}
-        <Layer clipFunc={clipFunction}>
-          {stickers.map((sticker) => {
-            // Calculate pixel dimensions from scale
-            const scale = sticker.scale || 45
-            const isImageSticker = sticker.type === 'image'
-            const stickerWidth = isImageSticker ? scale * 2 : scale * 2.4
-            const stickerHeight = stickerWidth
+        {/* Layer with PNG mask compositing - pixel-perfect clipping */}
+        <Layer>
+          {/* Group for masked sticker content */}
+          <Group>
+            {stickers.map((sticker) => {
+              // Calculate pixel dimensions from scale
+              const scale = sticker.scale || 45
+              const isImageSticker = sticker.type === 'image'
+              const stickerWidth = isImageSticker ? scale * 2 : scale * 2.4
+              const stickerHeight = stickerWidth
 
-            return (
-              <DraggableSticker
-                key={sticker.placedId}
-                id={sticker.placedId}
-                type={sticker.type}
-                src={sticker.imageUrl || sticker.highresUrl || sticker.fallbackUrl}
-                emoji={sticker.emoji}
-                x={sticker.x}
-                y={sticker.y}
-                width={stickerWidth}
-                height={stickerHeight}
-                rotation={sticker.rotation || 0}
-                isSelected={selectedStickerId === sticker.placedId}
-                onSelect={() => onStickerSelect && onStickerSelect(sticker.placedId)}
-                onChange={(updates) => handleStickerChange(sticker.placedId, updates)}
-                onDelete={() => onStickerDelete && onStickerDelete(sticker.placedId)}
-                containerWidth={containerWidth}
-                containerHeight={containerHeight}
-                maskedBounds={maskedBounds}
+              return (
+                <DraggableSticker
+                  key={sticker.placedId}
+                  id={sticker.placedId}
+                  type={sticker.type}
+                  src={sticker.imageUrl || sticker.highresUrl || sticker.fallbackUrl}
+                  emoji={sticker.emoji}
+                  x={sticker.x}
+                  y={sticker.y}
+                  width={stickerWidth}
+                  height={stickerHeight}
+                  rotation={sticker.rotation || 0}
+                  isSelected={selectedStickerId === sticker.placedId}
+                  onSelect={() => onStickerSelect && onStickerSelect(sticker.placedId)}
+                  onChange={(updates) => handleStickerChange(sticker.placedId, updates)}
+                  onDelete={() => onStickerDelete && onStickerDelete(sticker.placedId)}
+                  containerWidth={containerWidth}
+                  containerHeight={containerHeight}
+                  maskedBounds={maskedBounds}
+                />
+              )
+            })}
+            
+            {/* PNG MASK - clips stickers to printable area only */}
+            {maskImage && maskStatus === 'loaded' && (
+              <KonvaImage
+                image={maskImage}
+                x={0}
+                y={0}
+                width={containerWidth}
+                height={containerHeight}
+                globalCompositeOperation="destination-in"
+                listening={false}
               />
-            )
-          })}
+            )}
+          </Group>
+          
+          {/* PHONE OVERLAY - frame and camera on top (optional for sticker layer) */}
+          {overlayImage && overlayStatus === 'loaded' && (
+            <KonvaImage
+              image={overlayImage}
+              x={0}
+              y={0}
+              width={containerWidth}
+              height={containerHeight}
+              listening={false}
+            />
+          )}
         </Layer>
       </Stage>
 

@@ -1,16 +1,19 @@
 /**
- * PREMIUM KONVA CANVAS EDITOR v2
+ * PREMIUM KONVA CANVAS EDITOR v3
  *
- * Professional phone case customization editor with PROPER CLIPPING
+ * Professional phone case customization editor with PIXEL-PERFECT PNG MASKING
  *
- * KEY FIX: User images are now CLIPPED to the phone case printable area
- * using Konva's clipFunc with SVG path data from phoneCaseLayout.js
- *
- * Architecture:
- * 1. Container with phone back image (static, visual only)
- * 2. Konva Stage with clipped Layer (user's design is masked to case boundary)
+ * ARCHITECTURE (Casetify-style professional approach):
+ * 1. Phone back image (static, visual background)
+ * 2. Konva Stage with:
+ *    - User's draggable design elements
+ *    - PNG mask (destination-in compositing) - pixel-perfect from manufacturer templates
+ *    - Phone overlay (frame + camera module on top)
  * 3. Premium transform controls (Konva Transformer)
  * 4. Clean, intuitive toolbar
+ *
+ * KEY UPGRADE: Replaced hand-drawn SVG clipPaths with professional PNG masks
+ * extracted from Chinese manufacturer mockups for pixel-perfect accuracy.
  *
  * Design System: PimpMyCase Kiosk Brand
  * - Primary: Mint #98D4BB, Sky #7ECFED, Coral #E8734A
@@ -22,7 +25,7 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Stage, Layer, Image, Transformer, Group, Shape } from 'react-konva'
 import useImage from 'use-image'
 import Konva from 'konva'
-import { getPhoneBackImage, getClipPathData, getMaskPosition } from '../utils/phoneCaseLayout'
+import { getPhoneBackImage, getProfessionalMaskPath, getProfessionalOverlayPath, hasProfessionalMask } from '../utils/phoneCaseLayout'
 
 // Enable touch events for mobile
 Konva.hitOnDragEnabled = true
@@ -40,83 +43,7 @@ const COLORS = {
   danger: '#E53935'
 }
 
-// =====================
-// SVG PATH PARSER - Converts SVG path string to Konva-compatible drawing commands
-// =====================
-const parseSvgPath = (pathString) => {
-  if (!pathString) return []
-
-  const commands = []
-  // Match SVG path commands: letter followed by numbers (with optional decimals and negatives)
-  const regex = /([MLHVCSQTAZ])([^MLHVCSQTAZ]*)/gi
-  let match
-
-  while ((match = regex.exec(pathString)) !== null) {
-    const cmd = match[1].toUpperCase()
-    const args = match[2].trim().split(/[\s,]+/).filter(s => s).map(Number)
-    commands.push({ cmd, args })
-  }
-
-  return commands
-}
-
-// Draw SVG path on Konva context
-const drawSvgPath = (ctx, commands, scaleX = 1, scaleY = 1, offsetX = 0, offsetY = 0) => {
-  let currentX = 0
-  let currentY = 0
-
-  commands.forEach(({ cmd, args }) => {
-    switch (cmd) {
-      case 'M': // Move to
-        currentX = args[0] * scaleX + offsetX
-        currentY = args[1] * scaleY + offsetY
-        ctx.moveTo(currentX, currentY)
-        break
-      case 'L': // Line to
-        currentX = args[0] * scaleX + offsetX
-        currentY = args[1] * scaleY + offsetY
-        ctx.lineTo(currentX, currentY)
-        break
-      case 'H': // Horizontal line
-        currentX = args[0] * scaleX + offsetX
-        ctx.lineTo(currentX, currentY)
-        break
-      case 'V': // Vertical line
-        currentY = args[0] * scaleY + offsetY
-        ctx.lineTo(currentX, currentY)
-        break
-      case 'C': // Cubic bezier
-        ctx.bezierCurveTo(
-          args[0] * scaleX + offsetX, args[1] * scaleY + offsetY,
-          args[2] * scaleX + offsetX, args[3] * scaleY + offsetY,
-          args[4] * scaleX + offsetX, args[5] * scaleY + offsetY
-        )
-        currentX = args[4] * scaleX + offsetX
-        currentY = args[5] * scaleY + offsetY
-        break
-      case 'Q': // Quadratic bezier
-        ctx.quadraticCurveTo(
-          args[0] * scaleX + offsetX, args[1] * scaleY + offsetY,
-          args[2] * scaleX + offsetX, args[3] * scaleY + offsetY
-        )
-        currentX = args[2] * scaleX + offsetX
-        currentY = args[3] * scaleY + offsetY
-        break
-      case 'Z': // Close path
-        ctx.closePath()
-        break
-      default:
-        // For unsupported commands, try to handle as line segments
-        for (let i = 0; i < args.length; i += 2) {
-          if (args[i] !== undefined && args[i + 1] !== undefined) {
-            currentX = args[i] * scaleX + offsetX
-            currentY = args[i + 1] * scaleY + offsetY
-            ctx.lineTo(currentX, currentY)
-          }
-        }
-    }
-  })
-}
+// NOTE: SVG path parsing removed - now using PNG masks for pixel-perfect clipping
 
 // =====================
 // DRAGGABLE IMAGE COMPONENT
@@ -353,37 +280,32 @@ const KonvaCanvasEditor = ({
   const stageRef = useRef()
   const fileInputRef = useRef()
 
-  // Get phone assets
+  // Get phone assets - using PROFESSIONAL PNG masks from manufacturer templates
   const phoneBackImage = useMemo(() => getPhoneBackImage(phoneModel), [phoneModel])
-  const clipPathData = useMemo(() => getClipPathData(phoneModel), [phoneModel])
-  const maskPosition = useMemo(() => getMaskPosition(phoneModel), [phoneModel])
+  const professionalMaskPath = useMemo(() => getProfessionalMaskPath(phoneModel), [phoneModel])
+  const professionalOverlayPath = useMemo(() => getProfessionalOverlayPath(phoneModel), [phoneModel])
+  const hasProfMask = useMemo(() => hasProfessionalMask(phoneModel), [phoneModel])
 
-  // Parse SVG path for clipping
-  const clipCommands = useMemo(() => {
-    if (!clipPathData?.path) return []
-    return parseSvgPath(clipPathData.path)
-  }, [clipPathData])
+  // Load professional PNG mask and overlay using use-image hook
+  const [maskImage, maskStatus] = useImage(professionalMaskPath, 'anonymous')
+  const [overlayImage, overlayStatus] = useImage(professionalOverlayPath, 'anonymous')
 
-  // Calculate clip path scaling
-  const clipScale = useMemo(() => {
-    if (!clipPathData?.viewBox) return { scaleX: 1, scaleY: 1, offsetX: 0, offsetY: 0 }
-
-    const [, , vbWidth, vbHeight] = clipPathData.viewBox.split(' ').map(Number)
-
-    // Parse mask position percentages
-    const parsePercent = (str) => parseFloat(str) / 100
-    const maskX = parsePercent(maskPosition.x) * containerWidth
-    const maskY = parsePercent(maskPosition.y) * containerHeight
-    const maskW = parsePercent(maskPosition.width) * containerWidth
-    const maskH = parsePercent(maskPosition.height) * containerHeight
-
-    return {
-      scaleX: maskW / vbWidth,
-      scaleY: maskH / vbHeight,
-      offsetX: maskX,
-      offsetY: maskY
+  // Debug logging for mask loading
+  useEffect(() => {
+    if (maskStatus === 'loaded') {
+      console.log('✅ Professional mask loaded:', professionalMaskPath, maskImage?.width, 'x', maskImage?.height)
+    } else if (maskStatus === 'failed') {
+      console.warn('❌ Failed to load professional mask:', professionalMaskPath)
     }
-  }, [clipPathData, maskPosition, containerWidth, containerHeight])
+  }, [maskStatus, professionalMaskPath, maskImage])
+
+  useEffect(() => {
+    if (overlayStatus === 'loaded') {
+      console.log('✅ Professional overlay loaded:', professionalOverlayPath)
+    } else if (overlayStatus === 'failed') {
+      console.warn('❌ Failed to load professional overlay:', professionalOverlayPath)
+    }
+  }, [overlayStatus, professionalOverlayPath])
 
   // State
   const [elements, setElements] = useState([])
@@ -612,39 +534,7 @@ const KonvaCanvasEditor = ({
   const canUndo = historyIndex > 0
   const canRedo = historyIndex < history.length - 1
 
-  // =====================
-  // CLIP FUNCTION - This is the KEY fix for the "big square" problem
-  // =====================
-  const clipFunction = useCallback((ctx) => {
-    if (clipCommands.length === 0) {
-      // Fallback: simple rounded rectangle
-      const padding = containerWidth * 0.08
-      const radius = 35
-      ctx.beginPath()
-      ctx.moveTo(padding + radius, padding)
-      ctx.lineTo(containerWidth - padding - radius, padding)
-      ctx.quadraticCurveTo(containerWidth - padding, padding, containerWidth - padding, padding + radius)
-      ctx.lineTo(containerWidth - padding, containerHeight - padding - radius)
-      ctx.quadraticCurveTo(containerWidth - padding, containerHeight - padding, containerWidth - padding - radius, containerHeight - padding)
-      ctx.lineTo(padding + radius, containerHeight - padding)
-      ctx.quadraticCurveTo(padding, containerHeight - padding, padding, containerHeight - padding - radius)
-      ctx.lineTo(padding, padding + radius)
-      ctx.quadraticCurveTo(padding, padding, padding + radius, padding)
-      ctx.closePath()
-      return
-    }
-
-    // Draw SVG path scaled to container
-    ctx.beginPath()
-    drawSvgPath(
-      ctx,
-      clipCommands,
-      clipScale.scaleX,
-      clipScale.scaleY,
-      clipScale.offsetX,
-      clipScale.offsetY
-    )
-  }, [clipCommands, clipScale, containerWidth, containerHeight])
+  // PNG Mask is loaded via useImage hook above - no clipFunction needed!
 
   return (
     <div style={{
@@ -674,7 +564,7 @@ const KonvaCanvasEditor = ({
         }}
       />
 
-      {/* KONVA STAGE - User's design layer with CLIPPING */}
+      {/* KONVA STAGE - User's design layer with PNG MASK COMPOSITING */}
       <Stage
         ref={stageRef}
         width={containerWidth}
@@ -694,27 +584,57 @@ const KonvaCanvasEditor = ({
           zIndex: 1
         }}
       >
-        {/* CLIPPED LAYER - This clips user content to phone case boundary */}
-        <Layer clipFunc={clipFunction}>
-          {elements.map((el) => (
-            <DraggableImage
-              key={el.id}
-              id={el.id}
-              src={el.src}
-              x={el.x}
-              y={el.y}
-              width={el.width}
-              height={el.height}
-              rotation={el.rotation}
-              scaleX={el.scaleX}
-              scaleY={el.scaleY}
-              isSelected={el.id === selectedId}
-              onSelect={() => setSelectedId(el.id)}
-              onChange={(updates) => updateElement(el.id, updates)}
-              containerWidth={containerWidth}
-              containerHeight={containerHeight}
+        {/* CONTENT LAYER - User elements + PNG mask for pixel-perfect clipping */}
+        <Layer>
+          {/* Group for masked content */}
+          <Group>
+            {/* User's draggable images */}
+            {elements.map((el) => (
+              <DraggableImage
+                key={el.id}
+                id={el.id}
+                src={el.src}
+                x={el.x}
+                y={el.y}
+                width={el.width}
+                height={el.height}
+                rotation={el.rotation}
+                scaleX={el.scaleX}
+                scaleY={el.scaleY}
+                isSelected={el.id === selectedId}
+                onSelect={() => setSelectedId(el.id)}
+                onChange={(updates) => updateElement(el.id, updates)}
+                containerWidth={containerWidth}
+                containerHeight={containerHeight}
+              />
+            ))}
+            
+            {/* PNG MASK - clips content to printable area only */}
+            {/* globalCompositeOperation="destination-in" keeps only intersection */}
+            {maskImage && maskStatus === 'loaded' && (
+              <Image
+                image={maskImage}
+                x={0}
+                y={0}
+                width={containerWidth}
+                height={containerHeight}
+                globalCompositeOperation="destination-in"
+                listening={false}
+              />
+            )}
+          </Group>
+          
+          {/* PHONE OVERLAY - frame and camera module on TOP of everything */}
+          {overlayImage && overlayStatus === 'loaded' && (
+            <Image
+              image={overlayImage}
+              x={0}
+              y={0}
+              width={containerWidth}
+              height={containerHeight}
+              listening={false}
             />
-          ))}
+          )}
         </Layer>
       </Stage>
 

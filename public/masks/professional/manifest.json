@@ -1,0 +1,137 @@
+[
+  {
+    "model_id": "iphone-17-pro-max",
+    "mask": "iphone-17-pro-max-mask.png",
+    "overlay": "iphone-17-pro-max-overlay.png",
+    "width": 600,
+    "height": 753,
+    "original_width": 1824,
+    "original_height": 2292
+  },
+  {
+    "model_id": "iphone-17-pro",
+    "mask": "iphone-17-pro-mask.png",
+    "overlay": "iphone-17-pro-overlay.png",
+    "width": 600,
+    "height": 723,
+    "original_width": 1834,
+    "original_height": 2210
+  },
+  {
+    "model_id": "iphone-17-air",
+    "mask": "iphone-17-air-mask.png",
+    "overlay": "iphone-17-air-overlay.png",
+    "width": 600,
+    "height": 864,
+    "original_width": 1500,
+    "original_height": 2160
+  },
+  {
+    "model_id": "iphone-17",
+    "mask": "iphone-17-mask.png",
+    "overlay": "iphone-17-overlay.png",
+    "width": 600,
+    "height": 784,
+    "original_width": 1500,
+    "original_height": 1962
+  },
+  {
+    "model_id": "iphone-16-pro-max",
+    "mask": "iphone-16-pro-max-mask.png",
+    "overlay": "iphone-16-pro-max-overlay.png",
+    "width": 600,
+    "height": 890,
+    "original_width": 1592,
+    "original_height": 2362
+  },
+  {
+    "model_id": "iphone-16-pro",
+    "mask": "iphone-16-pro-mask.png",
+    "overlay": "iphone-16-pro-overlay.png",
+    "width": 600,
+    "height": 922,
+    "original_width": 1396,
+    "original_height": 2146
+  },
+  {
+    "model_id": "iphone-16-plus",
+    "mask": "iphone-16-plus-mask.png",
+    "overlay": "iphone-16-plus-overlay.png",
+    "width": 600,
+    "height": 885,
+    "original_width": 1600,
+    "original_height": 2362
+  },
+  {
+    "model_id": "iphone-16",
+    "mask": "iphone-16-mask.png",
+    "overlay": "iphone-16-overlay.png",
+    "width": 600,
+    "height": 864,
+    "original_width": 1522,
+    "original_height": 2194
+  },
+  {
+    "model_id": "iphone-15-pro-max",
+    "mask": "iphone-15-pro-max-mask.png",
+    "overlay": "iphone-15-pro-max-overlay.png",
+    "width": 600,
+    "height": 1120,
+    "original_width": 1218,
+    "original_height": 2274
+  },
+  {
+    "model_id": "iphone-15-pro",
+    "mask": "iphone-15-pro-mask.png",
+    "overlay": "iphone-15-pro-overlay.png",
+    "width": 600,
+    "height": 966,
+    "original_width": 1234,
+    "original_height": 1988
+  },
+  {
+    "model_id": "iphone-15-plus",
+    "mask": "iphone-15-plus-mask.png",
+    "overlay": "iphone-15-plus-overlay.png",
+    "width": 600,
+    "height": 1128,
+    "original_width": 1180,
+    "original_height": 2220
+  },
+  {
+    "model_id": "iphone-15",
+    "mask": "iphone-15-mask.png",
+    "overlay": "iphone-15-overlay.png",
+    "width": 600,
+    "height": 1090,
+    "original_width": 1180,
+    "original_height": 2144
+  },
+  {
+    "model_id": "samsung-s25-ultra",
+    "mask": "samsung-s25-ultra-mask.png",
+    "overlay": "samsung-s25-ultra-overlay.png",
+    "width": 500,
+    "height": 500,
+    "original_width": 2362,
+    "original_height": 2362
+  },
+  {
+    "model_id": "samsung-s25-plus",
+    "mask": "samsung-s25-plus-mask.png",
+    "overlay": "samsung-s25-plus-overlay.png",
+    "width": 500,
+    "height": 500,
+    "original_width": 2362,
+    "original_height": 2362
+  },
+  {
+    "model_id": "samsung-s25",
+    "mask": "samsung-s25-mask.png",
+    "overlay": "samsung-s25-overlay.png",
+    "width": 500,
+    "height": 500,
+    "original_width": 2362,
+    "original_height": 2362
+  }
+]

@@ -1346,3 +1346,141 @@ export {
   SAMSUNG_S25_LAYOUT,
   GENERIC_IPHONE_LAYOUT
 }
+
+
+// =====================================================
+// PROFESSIONAL PNG MASKS (from Chinese manufacturer mockups)
+// These are pixel-perfect masks extracted from the actual
+// printing templates - NOT hand-drawn approximations
+// =====================================================
+
+/**
+ * Model ID mapping for professional masks
+ * Maps user-facing model names to mask file identifiers
+ */
+const PROFESSIONAL_MASK_MODEL_MAP = {
+  // iPhone 17 series
+  'iphone 17 pro max': 'iphone-17-pro-max',
+  'iphone17promax': 'iphone-17-pro-max',
+  'iphone 17 pro': 'iphone-17-pro',
+  'iphone17pro': 'iphone-17-pro',
+  'iphone 17 air': 'iphone-17-air',
+  'iphone17air': 'iphone-17-air',
+  'iphone 17': 'iphone-17',
+  'iphone17': 'iphone-17',
+  
+  // iPhone 16 series
+  'iphone 16 pro max': 'iphone-16-pro-max',
+  'iphone16promax': 'iphone-16-pro-max',
+  'iphone 16 pro': 'iphone-16-pro',
+  'iphone16pro': 'iphone-16-pro',
+  'iphone 16 plus': 'iphone-16-plus',
+  'iphone16plus': 'iphone-16-plus',
+  'iphone 16': 'iphone-16',
+  'iphone16': 'iphone-16',
+  
+  // iPhone 15 series
+  'iphone 15 pro max': 'iphone-15-pro-max',
+  'iphone15promax': 'iphone-15-pro-max',
+  'iphone 15 pro': 'iphone-15-pro',
+  'iphone15pro': 'iphone-15-pro',
+  'iphone 15 plus': 'iphone-15-plus',
+  'iphone15plus': 'iphone-15-plus',
+  'iphone 15': 'iphone-15',
+  'iphone15': 'iphone-15',
+  
+  // Samsung S25 series
+  'samsung s25 ultra': 'samsung-s25-ultra',
+  'samsung galaxy s25 ultra': 'samsung-s25-ultra',
+  's25 ultra': 'samsung-s25-ultra',
+  's25ultra': 'samsung-s25-ultra',
+  'samsung s25 plus': 'samsung-s25-plus',
+  'samsung s25+': 'samsung-s25-plus',
+  's25 plus': 'samsung-s25-plus',
+  's25plus': 'samsung-s25-plus',
+  's25+': 'samsung-s25-plus',
+  'samsung s25': 'samsung-s25',
+  's25': 'samsung-s25',
+}
+
+/**
+ * Get the model ID for professional masks
+ * @param {string} modelName - User-facing model name
+ * @returns {string} Normalized model ID for mask files
+ */
+const getProfessionalMaskModelId = (modelName) => {
+  if (!modelName) return 'iphone-17-pro-max'
+  
+  const normalized = modelName.toLowerCase().trim()
+  const noSpaces = normalized.replace(/\s+/g, '')
+  
+  // Check exact matches first
+  if (PROFESSIONAL_MASK_MODEL_MAP[normalized]) {
+    return PROFESSIONAL_MASK_MODEL_MAP[normalized]
+  }
+  if (PROFESSIONAL_MASK_MODEL_MAP[noSpaces]) {
+    return PROFESSIONAL_MASK_MODEL_MAP[noSpaces]
+  }
+  
+  // Fuzzy matching for common patterns
+  if (noSpaces.includes('iphone17promax')) return 'iphone-17-pro-max'
+  if (noSpaces.includes('iphone17pro')) return 'iphone-17-pro'
+  if (noSpaces.includes('iphone17air')) return 'iphone-17-air'
+  if (noSpaces.includes('iphone17')) return 'iphone-17'
+  if (noSpaces.includes('iphone16promax')) return 'iphone-16-pro-max'
+  if (noSpaces.includes('iphone16pro')) return 'iphone-16-pro'
+  if (noSpaces.includes('iphone16plus')) return 'iphone-16-plus'
+  if (noSpaces.includes('iphone16')) return 'iphone-16'
+  if (noSpaces.includes('iphone15promax')) return 'iphone-15-pro-max'
+  if (noSpaces.includes('iphone15pro')) return 'iphone-15-pro'
+  if (noSpaces.includes('iphone15plus')) return 'iphone-15-plus'
+  if (noSpaces.includes('iphone15')) return 'iphone-15'
+  if (noSpaces.includes('s25ultra')) return 'samsung-s25-ultra'
+  if (noSpaces.includes('s25plus') || noSpaces.includes('s25+')) return 'samsung-s25-plus'
+  if (noSpaces.includes('s25')) return 'samsung-s25'
+  
+  // Default
+  console.log('⚠️ No professional mask found for:', modelName, '- using iPhone 17 Pro Max')
+  return 'iphone-17-pro-max'
+}
+
+/**
+ * Get the path to the professional PNG mask for a phone model
+ * The mask is white where user content should appear, black elsewhere
+ * 
+ * @param {string} modelName - Name of the phone model
+ * @returns {string} Path to the PNG mask file
+ */
+export const getProfessionalMaskPath = (modelName) => {
+  const modelId = getProfessionalMaskModelId(modelName)
+  return `/masks/professional/${modelId}-mask.png`
+}
+
+/**
+ * Get the path to the professional overlay for a phone model
+ * The overlay shows the frame and camera module with transparent center
+ * 
+ * @param {string} modelName - Name of the phone model
+ * @returns {string} Path to the PNG overlay file
+ */
+export const getProfessionalOverlayPath = (modelName) => {
+  const modelId = getProfessionalMaskModelId(modelName)
+  return `/masks/professional/${modelId}-overlay.png`
+}
+
+/**
+ * Check if professional masks are available for a model
+ * @param {string} modelName - Name of the phone model
+ * @returns {boolean} True if professional masks exist
+ */
+export const hasProfessionalMask = (modelName) => {
+  const modelId = getProfessionalMaskModelId(modelName)
+  // These are the models we have professional masks for
+  const availableMasks = [
+    'iphone-17-pro-max', 'iphone-17-pro', 'iphone-17-air', 'iphone-17',
+    'iphone-16-pro-max', 'iphone-16-pro', 'iphone-16-plus', 'iphone-16',
+    'iphone-15-pro-max', 'iphone-15-pro', 'iphone-15-plus', 'iphone-15',
+    'samsung-s25-ultra', 'samsung-s25-plus', 'samsung-s25'
+  ]
+  return availableMasks.includes(modelId)
+}
