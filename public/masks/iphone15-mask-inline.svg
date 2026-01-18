@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1236" height="2460">
+  <defs>
+    <mask id="phoneCaseMask">
+      <image
+        href="/masks/iphone15's mask.png"
+        width="1236"
+        height="2460"
+        preserveAspectRatio="none"
+      />
+    </mask>
+  </defs>
+</svg>

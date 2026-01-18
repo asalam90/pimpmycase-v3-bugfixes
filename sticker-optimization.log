@@ -1,0 +1,907 @@
+🎨 Sticker Optimization Starting...
+📁 Source: /home/icrop/Desktop/PerceptiaAI/Projects/pimpmycase-newui/public/Stickers
+📐 Thumbnail size: (150, 150) @ 75% (for grid)
+📐 High-res size: (2000, 2000) @ 95% (for placement)
+------------------------------------------------------------
+📊 Found 219 sticker images
+
+[1/219] Processing: CUTE/68.png
+  ✓ Thumbnail (grid): 2.9KB (99.4% reduction)
+  ✓ High-res (placement): 80.0KB (82.5% reduction)
+
+[2/219] Processing: CUTE/64.png
+  ✓ Thumbnail (grid): 4.4KB (99.8% reduction)
+  ✓ High-res (placement): 224.6KB (89.6% reduction)
+
+[3/219] Processing: CUTE/70.png
+  ✓ Thumbnail (grid): 4.1KB (99.6% reduction)
+  ✓ High-res (placement): 142.6KB (87.7% reduction)
+
+[4/219] Processing: CUTE/65.png
+  ✓ Thumbnail (grid): 4.7KB (99.8% reduction)
+  ✓ High-res (placement): 167.6KB (93.6% reduction)
+
+[5/219] Processing: CUTE/69.png
+  ✓ Thumbnail (grid): 3.9KB (99.9% reduction)
+  ✓ High-res (placement): 152.3KB (94.9% reduction)
+
+[6/219] Processing: CUTE/61.png
+  ✓ Thumbnail (grid): 8.1KB (99.9% reduction)
+  ✓ High-res (placement): 405.2KB (92.9% reduction)
+
+[7/219] Processing: CUTE/63.png
+  ✓ Thumbnail (grid): 4.8KB (99.9% reduction)
+  ✓ High-res (placement): 183.6KB (94.5% reduction)
+
+[8/219] Processing: CUTE/67.png
+  ✓ Thumbnail (grid): 5.9KB (99.8% reduction)
+  ✓ High-res (placement): 213.4KB (92.0% reduction)
+
+[9/219] Processing: CUTE/62.png
+  ✓ Thumbnail (grid): 7.0KB (99.9% reduction)
+  ✓ High-res (placement): 318.7KB (94.3% reduction)
+
+[10/219] Processing: CUTE/66.png
+  ✓ Thumbnail (grid): 3.5KB (99.6% reduction)
+  ✓ High-res (placement): 168.5KB (81.7% reduction)
+
+[11/219] Processing: PIXEL ART/19.png
+  ✓ Thumbnail (grid): 1.9KB (100.0% reduction)
+  ✓ High-res (placement): 264.3KB (96.9% reduction)
+
+[12/219] Processing: PIXEL ART/11.png
+  ✓ Thumbnail (grid): 2.1KB (100.0% reduction)
+  ✓ High-res (placement): 128.1KB (97.3% reduction)
+
+[13/219] Processing: PIXEL ART/20.png
+  ✓ Thumbnail (grid): 2.7KB (100.0% reduction)
+  ✓ High-res (placement): 430.9KB (96.0% reduction)
+
+[14/219] Processing: PIXEL ART/12.png
+  ✓ Thumbnail (grid): 1.6KB (100.0% reduction)
+  ✓ High-res (placement): 258.3KB (96.7% reduction)
+
+[15/219] Processing: PIXEL ART/17.png
+  ✓ Thumbnail (grid): 2.3KB (100.0% reduction)
+  ✓ High-res (placement): 207.8KB (96.9% reduction)
+
+[16/219] Processing: PIXEL ART/14.png
+  ✓ Thumbnail (grid): 2.2KB (100.0% reduction)
+  ✓ High-res (placement): 150.4KB (96.8% reduction)
+
+[17/219] Processing: PIXEL ART/18.png
+  ✓ Thumbnail (grid): 1.7KB (100.0% reduction)
+  ✓ High-res (placement): 382.6KB (96.0% reduction)
+
+[18/219] Processing: PIXEL ART/13.png
+  ✓ Thumbnail (grid): 3.5KB (100.0% reduction)
+  ✓ High-res (placement): 407.9KB (96.1% reduction)
+
+[19/219] Processing: PIXEL ART/15.png
+  ✓ Thumbnail (grid): 3.4KB (99.9% reduction)
+  ✓ High-res (placement): 170.4KB (96.2% reduction)
+
+[20/219] Processing: PIXEL ART/16.png
+  ✓ Thumbnail (grid): 2.9KB (99.9% reduction)
+  ✓ High-res (placement): 163.2KB (97.0% reduction)
+
+[21/219] Processing: SPORTS/172.png
+  ✓ Thumbnail (grid): 4.0KB (99.9% reduction)
+  ✓ High-res (placement): 247.3KB (96.1% reduction)
+
+[22/219] Processing: SPORTS/178.png
+  ✓ Thumbnail (grid): 1.8KB (99.9% reduction)
+  ✓ High-res (placement): 95.8KB (97.2% reduction)
+
+[23/219] Processing: SPORTS/171.png
+  ✓ Thumbnail (grid): 4.0KB (99.9% reduction)
+  ✓ High-res (placement): 181.1KB (96.9% reduction)
+
+[24/219] Processing: SPORTS/177.png
+  ✓ Thumbnail (grid): 1.4KB (99.9% reduction)
+  ✓ High-res (placement): 80.5KB (97.1% reduction)
+
+[25/219] Processing: SPORTS/176.png
+  ✓ Thumbnail (grid): 3.4KB (99.5% reduction)
+  ✓ High-res (placement): 131.0KB (81.3% reduction)
+
+[26/219] Processing: SPORTS/174.png
+  ✓ Thumbnail (grid): 3.0KB (100.0% reduction)
+  ✓ High-res (placement): 398.9KB (95.5% reduction)
+
+[27/219] Processing: SPORTS/173.png
+  ✓ Thumbnail (grid): 5.5KB (99.9% reduction)
+  ✓ High-res (placement): 443.2KB (94.5% reduction)
+
+[28/219] Processing: SPORTS/180.png
+  ✓ Thumbnail (grid): 4.8KB (99.6% reduction)
+  ✓ High-res (placement): 131.8KB (90.2% reduction)
+
+[29/219] Processing: SPORTS/179.png
+  ✓ Thumbnail (grid): 2.8KB (99.9% reduction)
+  ✓ High-res (placement): 133.3KB (94.3% reduction)
+
+[30/219] Processing: SPORTS/175.png
+  ✓ Thumbnail (grid): 4.5KB (99.4% reduction)
+  ✓ High-res (placement): 164.0KB (79.7% reduction)
+
+[31/219] Processing: COUNTRIES/57.png
+  ✓ Thumbnail (grid): 4.5KB (99.9% reduction)
+  ✓ High-res (placement): 430.2KB (92.3% reduction)
+
+[32/219] Processing: COUNTRIES/54.png
+  ✓ Thumbnail (grid): 1.5KB (100.0% reduction)
+  ✓ High-res (placement): 145.1KB (97.0% reduction)
+
+[33/219] Processing: COUNTRIES/55.png
+  ✓ Thumbnail (grid): 4.2KB (99.9% reduction)
+  ✓ High-res (placement): 412.2KB (92.5% reduction)
+
+[34/219] Processing: COUNTRIES/60.png
+  ✓ Thumbnail (grid): 4.4KB (100.0% reduction)
+  ✓ High-res (placement): 575.8KB (96.0% reduction)
+
+[35/219] Processing: COUNTRIES/51.png
+  ✓ Thumbnail (grid): 3.7KB (99.9% reduction)
+  ✓ High-res (placement): 312.7KB (95.6% reduction)
+
+[36/219] Processing: COUNTRIES/58.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 352.5KB (95.2% reduction)
+
+[37/219] Processing: COUNTRIES/59.png
+  ✓ Thumbnail (grid): 3.5KB (99.9% reduction)
+  ✓ High-res (placement): 374.4KB (93.0% reduction)
+
+[38/219] Processing: COUNTRIES/53.png
+  ✓ Thumbnail (grid): 6.9KB (99.9% reduction)
+  ✓ High-res (placement): 560.4KB (94.4% reduction)
+
+[39/219] Processing: COUNTRIES/56.png
+  ✓ Thumbnail (grid): 3.1KB (100.0% reduction)
+  ✓ High-res (placement): 353.8KB (96.4% reduction)
+
+[40/219] Processing: COUNTRIES/52.png
+  ✓ Thumbnail (grid): 5.0KB (99.9% reduction)
+  ✓ High-res (placement): 592.6KB (93.1% reduction)
+
+[41/219] Processing: SKULL/149.png
+  ✓ Thumbnail (grid): 5.8KB (99.9% reduction)
+  ✓ High-res (placement): 329.8KB (92.8% reduction)
+
+[42/219] Processing: SKULL/143.png
+  ✓ Thumbnail (grid): 5.0KB (99.9% reduction)
+  ✓ High-res (placement): 407.8KB (89.3% reduction)
+
+[43/219] Processing: SKULL/144.png
+  ✓ Thumbnail (grid): 6.4KB (99.9% reduction)
+  ✓ High-res (placement): 465.7KB (89.2% reduction)
+
+[44/219] Processing: SKULL/142.png
+  ✓ Thumbnail (grid): 4.3KB (99.9% reduction)
+  ✓ High-res (placement): 302.5KB (95.6% reduction)
+
+[45/219] Processing: SKULL/150.png
+  ✓ Thumbnail (grid): 5.4KB (99.9% reduction)
+  ✓ High-res (placement): 478.7KB (93.2% reduction)
+
+[46/219] Processing: SKULL/147.png
+  ✓ Thumbnail (grid): 5.2KB (100.0% reduction)
+  ✓ High-res (placement): 665.0KB (93.7% reduction)
+
+[47/219] Processing: SKULL/141.png
+  ✓ Thumbnail (grid): 6.5KB (99.9% reduction)
+  ✓ High-res (placement): 513.8KB (92.6% reduction)
+
+[48/219] Processing: SKULL/146.png
+  ✓ Thumbnail (grid): 4.5KB (99.9% reduction)
+  ✓ High-res (placement): 339.7KB (93.1% reduction)
+
+[49/219] Processing: SKULL/148.png
+  ✓ Thumbnail (grid): 5.5KB (99.9% reduction)
+  ✓ High-res (placement): 413.1KB (95.1% reduction)
+
+[50/219] Processing: SKULL/145.png
+  ✓ Thumbnail (grid): 6.8KB (99.9% reduction)
+  ✓ High-res (placement): 608.9KB (90.6% reduction)
+
+[51/219] Processing: EMOJIS/86.png
+  ✓ Thumbnail (grid): 3.7KB (99.5% reduction)
+  ✓ High-res (placement): 160.6KB (78.1% reduction)
+
+[52/219] Processing: EMOJIS/85.png
+  ✓ Thumbnail (grid): 4.1KB (98.8% reduction)
+  ✓ High-res (placement): 133.5KB (61.2% reduction)
+
+[53/219] Processing: EMOJIS/81.png
+  ✓ Thumbnail (grid): 5.5KB (98.5% reduction)
+  ✓ High-res (placement): 166.6KB (55.3% reduction)
+
+[54/219] Processing: EMOJIS/87.png
+  ✓ Thumbnail (grid): 5.8KB (99.3% reduction)
+  ✓ High-res (placement): 273.7KB (64.3% reduction)
+
+[55/219] Processing: EMOJIS/89.png
+  ✓ Thumbnail (grid): 5.1KB (99.1% reduction)
+  ✓ High-res (placement): 235.6KB (56.9% reduction)
+
+[56/219] Processing: EMOJIS/90.png
+  ✓ Thumbnail (grid): 3.2KB (99.2% reduction)
+  ✓ High-res (placement): 83.9KB (79.0% reduction)
+
+[57/219] Processing: EMOJIS/82.png
+  ✓ Thumbnail (grid): 2.2KB (99.0% reduction)
+  ✓ High-res (placement): 55.9KB (73.9% reduction)
+
+[58/219] Processing: EMOJIS/83.png
+  ✓ Thumbnail (grid): 4.7KB (99.0% reduction)
+  ✓ High-res (placement): 159.7KB (67.1% reduction)
+
+[59/219] Processing: EMOJIS/84.png
+  ✓ Thumbnail (grid): 4.7KB (99.2% reduction)
+  ✓ High-res (placement): 223.7KB (60.2% reduction)
+
+[60/219] Processing: EMOJIS/88.png
+  ✓ Thumbnail (grid): 6.7KB (99.0% reduction)
+  ✓ High-res (placement): 249.0KB (64.7% reduction)
+
+[61/219] Processing: DOODLE /100.png
+  ✓ Thumbnail (grid): 8.2KB (99.9% reduction)
+  ✓ High-res (placement): 486.4KB (92.7% reduction)
+
+[62/219] Processing: DOODLE /97.png
+  ✓ Thumbnail (grid): 4.3KB (99.9% reduction)
+  ✓ High-res (placement): 397.9KB (94.0% reduction)
+
+[63/219] Processing: DOODLE /99.png
+  ✓ Thumbnail (grid): 4.0KB (99.8% reduction)
+  ✓ High-res (placement): 241.8KB (89.2% reduction)
+
+[64/219] Processing: DOODLE /92.png
+  ✓ Thumbnail (grid): 8.4KB (99.9% reduction)
+  ✓ High-res (placement): 747.8KB (90.4% reduction)
+
+[65/219] Processing: DOODLE /95.png
+  ✓ Thumbnail (grid): 8.3KB (99.9% reduction)
+  ✓ High-res (placement): 651.9KB (89.3% reduction)
+
+[66/219] Processing: DOODLE /91.png
+  ✓ Thumbnail (grid): 7.1KB (99.9% reduction)
+  ✓ High-res (placement): 527.9KB (90.3% reduction)
+
+[67/219] Processing: DOODLE /93.png
+  ✓ Thumbnail (grid): 6.6KB (99.8% reduction)
+  ✓ High-res (placement): 500.4KB (87.6% reduction)
+
+[68/219] Processing: DOODLE /94.png
+  ✓ Thumbnail (grid): 4.4KB (99.9% reduction)
+  ✓ High-res (placement): 302.0KB (89.7% reduction)
+
+[69/219] Processing: DOODLE /98.png
+  ✓ Thumbnail (grid): 6.6KB (99.8% reduction)
+  ✓ High-res (placement): 395.3KB (90.1% reduction)
+
+[70/219] Processing: DOODLE /96.png
+  ✓ Thumbnail (grid): 3.6KB (99.0% reduction)
+  ✓ High-res (placement): 87.1KB (75.5% reduction)
+
+[71/219] Processing: JESUS/116.png
+  ✓ Thumbnail (grid): 3.4KB (100.0% reduction)
+  ✓ High-res (placement): 367.8KB (95.3% reduction)
+
+[72/219] Processing: JESUS/114.png
+  ✓ Thumbnail (grid): 3.4KB (99.9% reduction)
+  ✓ High-res (placement): 304.3KB (93.8% reduction)
+
+[73/219] Processing: JESUS/118.png
+  ✓ Thumbnail (grid): 3.4KB (99.9% reduction)
+  ✓ High-res (placement): 216.1KB (95.7% reduction)
+
+[74/219] Processing: JESUS/120.png
+  ✓ Thumbnail (grid): 3.0KB (99.9% reduction)
+  ✓ High-res (placement): 212.3KB (96.5% reduction)
+
+[75/219] Processing: JESUS/117.png
+  ✓ Thumbnail (grid): 4.2KB (100.0% reduction)
+  ✓ High-res (placement): 411.7KB (95.9% reduction)
+
+[76/219] Processing: JESUS/111.png
+  ✓ Thumbnail (grid): 3.9KB (99.9% reduction)
+  ✓ High-res (placement): 225.2KB (95.0% reduction)
+
+[77/219] Processing: JESUS/112.png
+  ✓ Thumbnail (grid): 4.6KB (99.9% reduction)
+  ✓ High-res (placement): 373.5KB (93.1% reduction)
+
+[78/219] Processing: JESUS/113.png
+  ✓ Thumbnail (grid): 3.9KB (99.9% reduction)
+  ✓ High-res (placement): 254.4KB (93.2% reduction)
+
+[79/219] Processing: JESUS/119.png
+  ✓ Thumbnail (grid): 1.9KB (100.0% reduction)
+  ✓ High-res (placement): 288.7KB (95.9% reduction)
+
+[80/219] Processing: JESUS/115.png
+  ✓ Thumbnail (grid): 3.7KB (100.0% reduction)
+  ✓ High-res (placement): 484.6KB (93.6% reduction)
+
+[81/219] Processing: MONSTERS/132.png
+  ✓ Thumbnail (grid): 4.8KB (99.9% reduction)
+  ✓ High-res (placement): 205.8KB (94.8% reduction)
+
+[82/219] Processing: MONSTERS/140.png
+  ✓ Thumbnail (grid): 6.3KB (99.9% reduction)
+  ✓ High-res (placement): 328.8KB (95.5% reduction)
+
+[83/219] Processing: MONSTERS/131.png
+  ✓ Thumbnail (grid): 4.8KB (99.9% reduction)
+  ✓ High-res (placement): 355.4KB (94.2% reduction)
+
+[84/219] Processing: MONSTERS/137.png
+  ✓ Thumbnail (grid): 3.8KB (99.5% reduction)
+  ✓ High-res (placement): 121.2KB (84.8% reduction)
+
+[85/219] Processing: MONSTERS/138.png
+  ✓ Thumbnail (grid): 5.6KB (99.8% reduction)
+  ✓ High-res (placement): 234.0KB (92.4% reduction)
+
+[86/219] Processing: MONSTERS/133.png
+  ✓ Thumbnail (grid): 4.6KB (99.9% reduction)
+  ✓ High-res (placement): 302.4KB (95.7% reduction)
+
+[87/219] Processing: MONSTERS/135.png
+  ✓ Thumbnail (grid): 5.7KB (99.9% reduction)
+  ✓ High-res (placement): 402.2KB (94.5% reduction)
+
+[88/219] Processing: MONSTERS/139.png
+  ✓ Thumbnail (grid): 2.9KB (99.9% reduction)
+  ✓ High-res (placement): 219.0KB (95.8% reduction)
+
+[89/219] Processing: MONSTERS/136.png
+  ✓ Thumbnail (grid): 4.5KB (99.7% reduction)
+  ✓ High-res (placement): 213.1KB (86.1% reduction)
+
+[90/219] Processing: MONSTERS/134.png
+  ✓ Thumbnail (grid): 4.2KB (99.9% reduction)
+  ✓ High-res (placement): 229.1KB (95.2% reduction)
+
+[91/219] Processing: CHRISTMAS/45.png
+  ✓ Thumbnail (grid): 2.6KB (99.9% reduction)
+  ✓ High-res (placement): 91.0KB (94.8% reduction)
+
+[92/219] Processing: CHRISTMAS/46.png
+  ✓ Thumbnail (grid): 3.7KB (99.9% reduction)
+  ✓ High-res (placement): 257.5KB (95.4% reduction)
+
+[93/219] Processing: CHRISTMAS/41.png
+  ✓ Thumbnail (grid): 6.5KB (99.9% reduction)
+  ✓ High-res (placement): 384.4KB (93.3% reduction)
+
+[94/219] Processing: CHRISTMAS/43.png
+  ✓ Thumbnail (grid): 5.5KB (99.9% reduction)
+  ✓ High-res (placement): 450.9KB (92.5% reduction)
+
+[95/219] Processing: CHRISTMAS/47.png
+  ✓ Thumbnail (grid): 5.3KB (99.9% reduction)
+  ✓ High-res (placement): 292.7KB (93.9% reduction)
+
+[96/219] Processing: CHRISTMAS/49.png
+  ✓ Thumbnail (grid): 5.8KB (99.9% reduction)
+  ✓ High-res (placement): 337.4KB (95.3% reduction)
+
+[97/219] Processing: CHRISTMAS/42.png
+  ✓ Thumbnail (grid): 4.0KB (99.9% reduction)
+  ✓ High-res (placement): 210.8KB (95.9% reduction)
+
+[98/219] Processing: CHRISTMAS/44.png
+  ✓ Thumbnail (grid): 2.9KB (100.0% reduction)
+  ✓ High-res (placement): 355.6KB (96.3% reduction)
+
+[99/219] Processing: CHRISTMAS/48.png
+  ✓ Thumbnail (grid): 6.6KB (99.9% reduction)
+  ✓ High-res (placement): 420.8KB (94.9% reduction)
+
+[100/219] Processing: CHRISTMAS/50.png
+  ✓ Thumbnail (grid): 4.0KB (99.9% reduction)
+  ✓ High-res (placement): 218.3KB (95.6% reduction)
+
+[101/219] Processing: SPACE/184.png
+  ✓ Thumbnail (grid): 3.2KB (99.6% reduction)
+  ✓ High-res (placement): 157.3KB (79.3% reduction)
+
+[102/219] Processing: SPACE/185.png
+  ✓ Thumbnail (grid): 2.4KB (99.9% reduction)
+  ✓ High-res (placement): 154.9KB (96.3% reduction)
+
+[103/219] Processing: SPACE/190.png
+  ✓ Thumbnail (grid): 4.6KB (99.9% reduction)
+  ✓ High-res (placement): 341.2KB (94.8% reduction)
+
+[104/219] Processing: SPACE/189.png
+  ✓ Thumbnail (grid): 2.4KB (98.7% reduction)
+  ✓ High-res (placement): 43.0KB (75.9% reduction)
+
+[105/219] Processing: SPACE/186.png
+  ✓ Thumbnail (grid): 3.9KB (99.9% reduction)
+  ✓ High-res (placement): 352.7KB (95.4% reduction)
+
+[106/219] Processing: SPACE/183.png
+  ✓ Thumbnail (grid): 3.2KB (100.0% reduction)
+  ✓ High-res (placement): 345.3KB (95.9% reduction)
+
+[107/219] Processing: SPACE/188.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 175.1KB (95.8% reduction)
+
+[108/219] Processing: SPACE/182.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 173.7KB (95.0% reduction)
+
+[109/219] Processing: SPACE/187.png
+  ✓ Thumbnail (grid): 3.5KB (98.9% reduction)
+  ✓ High-res (placement): 75.3KB (76.9% reduction)
+
+[110/219] Processing: SPACE/181.png
+  ✓ Thumbnail (grid): 2.8KB (100.0% reduction)
+  ✓ High-res (placement): 365.0KB (95.8% reduction)
+
+[111/219] Processing: POSITIVE VIBE/220.png
+  ✓ Thumbnail (grid): 5.6KB (99.9% reduction)
+  ✓ High-res (placement): 229.5KB (96.0% reduction)
+
+[112/219] Processing: POSITIVE VIBE/212.png
+  ✓ Thumbnail (grid): 2.7KB (99.2% reduction)
+  ✓ High-res (placement): 88.9KB (75.3% reduction)
+
+[113/219] Processing: POSITIVE VIBE/215.png
+  ✓ Thumbnail (grid): 5.1KB (98.8% reduction)
+  ✓ High-res (placement): 180.1KB (58.8% reduction)
+
+[114/219] Processing: POSITIVE VIBE/211.png
+  ✓ Thumbnail (grid): 3.5KB (99.9% reduction)
+  ✓ High-res (placement): 135.8KB (95.8% reduction)
+
+[115/219] Processing: POSITIVE VIBE/216.png
+  ✓ Thumbnail (grid): 4.8KB (99.9% reduction)
+  ✓ High-res (placement): 236.2KB (95.7% reduction)
+
+[116/219] Processing: POSITIVE VIBE/214.png
+  ✓ Thumbnail (grid): 1.8KB (100.0% reduction)
+  ✓ High-res (placement): 308.8KB (96.2% reduction)
+
+[117/219] Processing: POSITIVE VIBE/213.png
+  ✓ Thumbnail (grid): 3.6KB (99.2% reduction)
+  ✓ High-res (placement): 115.5KB (75.4% reduction)
+
+[118/219] Processing: POSITIVE VIBE/219.png
+  ✓ Thumbnail (grid): 6.9KB (98.3% reduction)
+  ✓ High-res (placement): 209.7KB (49.1% reduction)
+
+[119/219] Processing: POSITIVE VIBE/218.png
+  ✓ Thumbnail (grid): 3.2KB (99.9% reduction)
+  ✓ High-res (placement): 198.4KB (96.5% reduction)
+
+[120/219] Processing: POSITIVE VIBE/217.png
+  ✓ Thumbnail (grid): 5.5KB (98.8% reduction)
+  ✓ High-res (placement): 195.9KB (56.3% reduction)
+
+[121/219] Processing: VALENTINE_S DAY/159.png
+  ✓ Thumbnail (grid): 5.0KB (99.8% reduction)
+  ✓ High-res (placement): 276.1KB (89.9% reduction)
+
+[122/219] Processing: VALENTINE_S DAY/160.png
+  ✓ Thumbnail (grid): 5.9KB (99.8% reduction)
+  ✓ High-res (placement): 316.8KB (88.2% reduction)
+
+[123/219] Processing: VALENTINE_S DAY/158.png
+  ✓ Thumbnail (grid): 4.3KB (99.2% reduction)
+  ✓ High-res (placement): 154.9KB (72.6% reduction)
+
+[124/219] Processing: VALENTINE_S DAY/156.png
+  ✓ Thumbnail (grid): 5.4KB (99.7% reduction)
+  ✓ High-res (placement): 196.5KB (90.6% reduction)
+
+[125/219] Processing: VALENTINE_S DAY/157.png
+  ✓ Thumbnail (grid): 5.2KB (98.7% reduction)
+  ✓ High-res (placement): 195.9KB (51.5% reduction)
+
+[126/219] Processing: VALENTINE_S DAY/153.png
+  ✓ Thumbnail (grid): 4.7KB (99.2% reduction)
+  ✓ High-res (placement): 152.8KB (75.5% reduction)
+
+[127/219] Processing: VALENTINE_S DAY/151.png
+  ✓ Thumbnail (grid): 3.5KB (99.8% reduction)
+  ✓ High-res (placement): 211.8KB (90.6% reduction)
+
+[128/219] Processing: VALENTINE_S DAY/154.png
+  ✓ Thumbnail (grid): 1.9KB (98.4% reduction)
+  ✓ High-res (placement): 18.0KB (84.6% reduction)
+
+[129/219] Processing: VALENTINE_S DAY/155.png
+  ✓ Thumbnail (grid): 5.5KB (99.8% reduction)
+  ✓ High-res (placement): 368.3KB (88.9% reduction)
+
+[130/219] Processing: VALENTINE_S DAY/152.png
+  ✓ Thumbnail (grid): 5.8KB (99.1% reduction)
+  ✓ High-res (placement): 233.2KB (62.7% reduction)
+
+[131/219] Processing: TRAVEL/166.png
+  ✓ Thumbnail (grid): 2.3KB (100.0% reduction)
+  ✓ High-res (placement): 537.2KB (95.8% reduction)
+
+[132/219] Processing: TRAVEL/170.png
+  ✓ Thumbnail (grid): 2.8KB (100.0% reduction)
+  ✓ High-res (placement): 398.3KB (96.1% reduction)
+
+[133/219] Processing: TRAVEL/167.png
+  ✓ Thumbnail (grid): 2.1KB (100.0% reduction)
+  ✓ High-res (placement): 505.2KB (95.9% reduction)
+
+[134/219] Processing: TRAVEL/164.png
+  ✓ Thumbnail (grid): 2.6KB (100.0% reduction)
+  ✓ High-res (placement): 336.7KB (96.4% reduction)
+
+[135/219] Processing: TRAVEL/168.png
+  ✓ Thumbnail (grid): 2.5KB (100.0% reduction)
+  ✓ High-res (placement): 299.2KB (96.5% reduction)
+
+[136/219] Processing: TRAVEL/161.png
+  ✓ Thumbnail (grid): 2.1KB (100.0% reduction)
+  ✓ High-res (placement): 422.5KB (96.0% reduction)
+
+[137/219] Processing: TRAVEL/162.png
+  ✓ Thumbnail (grid): 2.3KB (100.0% reduction)
+  ✓ High-res (placement): 423.1KB (96.1% reduction)
+
+[138/219] Processing: TRAVEL/163.png
+  ✓ Thumbnail (grid): 2.0KB (100.0% reduction)
+  ✓ High-res (placement): 398.5KB (96.2% reduction)
+
+[139/219] Processing: TRAVEL/165.png
+  ✓ Thumbnail (grid): 2.2KB (100.0% reduction)
+  ✓ High-res (placement): 401.6KB (96.0% reduction)
+
+[140/219] Processing: TRAVEL/169.png
+  ✓ Thumbnail (grid): 2.4KB (100.0% reduction)
+  ✓ High-res (placement): 482.9KB (95.9% reduction)
+
+[141/219] Processing: GRAFITTI/103.png
+  ✓ Thumbnail (grid): 8.9KB (99.9% reduction)
+  ✓ High-res (placement): 552.1KB (91.0% reduction)
+
+[142/219] Processing: GRAFITTI/106.png
+  ✓ Thumbnail (grid): 3.2KB (99.5% reduction)
+  ✓ High-res (placement): 127.5KB (79.3% reduction)
+
+[143/219] Processing: GRAFITTI/101.png
+  ✓ Thumbnail (grid): 4.9KB (99.9% reduction)
+  ✓ High-res (placement): 339.2KB (94.7% reduction)
+
+[144/219] Processing: GRAFITTI/109.png
+  ✓ Thumbnail (grid): 5.6KB (99.9% reduction)
+  ✓ High-res (placement): 381.3KB (94.0% reduction)
+
+[145/219] Processing: GRAFITTI/102.png
+  ✓ Thumbnail (grid): 3.3KB (100.0% reduction)
+  ✓ High-res (placement): 359.1KB (95.2% reduction)
+
+[146/219] Processing: GRAFITTI/104.png
+  ✓ Thumbnail (grid): 12.5KB (99.9% reduction)
+  ✓ High-res (placement): 1365.5KB (87.3% reduction)
+
+[147/219] Processing: GRAFITTI/105.png
+  ✓ Thumbnail (grid): 4.4KB (99.7% reduction)
+  ✓ High-res (placement): 215.8KB (87.2% reduction)
+
+[148/219] Processing: GRAFITTI/107.png
+  ✓ Thumbnail (grid): 4.1KB (99.4% reduction)
+  ✓ High-res (placement): 173.1KB (73.0% reduction)
+
+[149/219] Processing: GRAFITTI/108.png
+  ✓ Thumbnail (grid): 9.3KB (99.4% reduction)
+  ✓ High-res (placement): 483.9KB (68.3% reduction)
+
+[150/219] Processing: GRAFITTI/110.png
+  ✓ Thumbnail (grid): 6.8KB (99.9% reduction)
+  ✓ High-res (placement): 764.1KB (91.2% reduction)
+
+[151/219] Processing: BRITISH/27.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 313.7KB (92.9% reduction)
+
+[152/219] Processing: BRITISH/25.png
+  ✓ Thumbnail (grid): 3.6KB (99.9% reduction)
+  ✓ High-res (placement): 286.3KB (93.7% reduction)
+
+[153/219] Processing: BRITISH/29.png
+  ✓ Thumbnail (grid): 2.4KB (99.9% reduction)
+  ✓ High-res (placement): 196.8KB (94.6% reduction)
+
+[154/219] Processing: BRITISH/30.png
+  ✓ Thumbnail (grid): 3.3KB (100.0% reduction)
+  ✓ High-res (placement): 321.4KB (95.3% reduction)
+
+[155/219] Processing: BRITISH/21.png
+  ✓ Thumbnail (grid): 4.4KB (99.9% reduction)
+  ✓ High-res (placement): 371.8KB (93.0% reduction)
+
+[156/219] Processing: BRITISH/24.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 231.8KB (95.7% reduction)
+
+[157/219] Processing: BRITISH/26.png
+  ✓ Thumbnail (grid): 5.2KB (99.9% reduction)
+  ✓ High-res (placement): 461.2KB (92.3% reduction)
+
+[158/219] Processing: BRITISH/22.png
+  ✓ Thumbnail (grid): 2.8KB (99.9% reduction)
+  ✓ High-res (placement): 234.1KB (95.1% reduction)
+
+[159/219] Processing: BRITISH/23.png
+  ✓ Thumbnail (grid): 4.6KB (99.9% reduction)
+  ✓ High-res (placement): 315.7KB (91.5% reduction)
+
+[160/219] Processing: BRITISH/28.png
+  ✓ Thumbnail (grid): 3.5KB (99.9% reduction)
+  ✓ High-res (placement): 133.1KB (94.6% reduction)
+
+[161/219] Processing: ROCK/192.png
+  ✓ Thumbnail (grid): 3.4KB (99.3% reduction)
+  ✓ High-res (placement): 107.4KB (76.3% reduction)
+
+[162/219] Processing: ROCK/193.png
+  ✓ Thumbnail (grid): 4.1KB (99.9% reduction)
+  ✓ High-res (placement): 308.6KB (92.1% reduction)
+
+[163/219] Processing: ROCK/191.png
+  ✓ Thumbnail (grid): 5.2KB (99.9% reduction)
+  ✓ High-res (placement): 354.5KB (94.5% reduction)
+
+[164/219] Processing: ROCK/199.png
+  ✓ Thumbnail (grid): 2.3KB (99.2% reduction)
+  ✓ High-res (placement): 59.4KB (79.7% reduction)
+
+[165/219] Processing: ROCK/197.png
+  ✓ Thumbnail (grid): 4.1KB (99.5% reduction)
+  ✓ High-res (placement): 151.1KB (81.4% reduction)
+
+[166/219] Processing: ROCK/194.png
+  ✓ Thumbnail (grid): 4.5KB (99.9% reduction)
+  ✓ High-res (placement): 277.6KB (94.0% reduction)
+
+[167/219] Processing: ROCK/196.png
+  ✓ Thumbnail (grid): 3.8KB (99.2% reduction)
+  ✓ High-res (placement): 125.3KB (74.2% reduction)
+
+[168/219] Processing: ROCK/200.png
+  ✓ Thumbnail (grid): 5.6KB (99.5% reduction)
+  ✓ High-res (placement): 340.1KB (71.0% reduction)
+
+[169/219] Processing: ROCK/195.png
+  ✓ Thumbnail (grid): 4.2KB (99.8% reduction)
+  ✓ High-res (placement): 249.0KB (90.8% reduction)
+
+[170/219] Processing: ROCK/198.png
+  ✓ Thumbnail (grid): 3.7KB (99.3% reduction)
+  ✓ High-res (placement): 126.2KB (75.7% reduction)
+
+[171/219] Processing: ALIEN/10.png
+  ✓ Thumbnail (grid): 3.6KB (100.0% reduction)
+  ✓ High-res (placement): 404.4KB (96.4% reduction)
+
+[172/219] Processing: ALIEN/6.png
+  ✓ Thumbnail (grid): 2.9KB (99.9% reduction)
+  ✓ High-res (placement): 198.8KB (95.8% reduction)
+
+[173/219] Processing: ALIEN/4.png
+  ✓ Thumbnail (grid): 4.9KB (99.9% reduction)
+  ✓ High-res (placement): 330.0KB (95.7% reduction)
+
+[174/219] Processing: ALIEN/5.png
+  ✓ Thumbnail (grid): 3.5KB (99.8% reduction)
+  ✓ High-res (placement): 132.3KB (93.2% reduction)
+
+[175/219] Processing: ALIEN/7.png
+  ✓ Thumbnail (grid): 3.9KB (99.9% reduction)
+  ✓ High-res (placement): 185.3KB (96.0% reduction)
+
+[176/219] Processing: ALIEN/1.png
+  ✓ Thumbnail (grid): 3.3KB (99.9% reduction)
+  ✓ High-res (placement): 123.9KB (95.0% reduction)
+
+[177/219] Processing: ALIEN/8.png
+  ✓ Thumbnail (grid): 4.1KB (99.9% reduction)
+  ✓ High-res (placement): 321.6KB (95.2% reduction)
+
+[178/219] Processing: ALIEN/9.png
+  ✓ Thumbnail (grid): 2.4KB (100.0% reduction)
+  ✓ High-res (placement): 203.5KB (97.1% reduction)
+
+[179/219] Processing: ALIEN/2.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 283.9KB (96.1% reduction)
+
+[180/219] Processing: MOM_S DAY/122.png
+  ✓ Thumbnail (grid): 4.3KB (100.0% reduction)
+  ✓ High-res (placement): 485.2KB (95.3% reduction)
+
+[181/219] Processing: MOM_S DAY/126.png
+  ✓ Thumbnail (grid): 4.0KB (100.0% reduction)
+  ✓ High-res (placement): 275.8KB (96.7% reduction)
+
+[182/219] Processing: MOM_S DAY/130.png
+  ✓ Thumbnail (grid): 6.2KB (99.9% reduction)
+  ✓ High-res (placement): 355.3KB (93.2% reduction)
+
+[183/219] Processing: MOM_S DAY/129.png
+  ✓ Thumbnail (grid): 3.6KB (99.9% reduction)
+  ✓ High-res (placement): 207.5KB (94.8% reduction)
+
+[184/219] Processing: MOM_S DAY/121.png
+  ✓ Thumbnail (grid): 4.5KB (99.9% reduction)
+  ✓ High-res (placement): 373.9KB (95.7% reduction)
+
+[185/219] Processing: MOM_S DAY/127.png
+  ✓ Thumbnail (grid): 3.2KB (100.0% reduction)
+  ✓ High-res (placement): 217.0KB (96.8% reduction)
+
+[186/219] Processing: MOM_S DAY/128.png
+  ✓ Thumbnail (grid): 4.5KB (99.9% reduction)
+  ✓ High-res (placement): 288.2KB (96.3% reduction)
+
+[187/219] Processing: MOM_S DAY/125.png
+  ✓ Thumbnail (grid): 5.9KB (99.9% reduction)
+  ✓ High-res (placement): 497.7KB (91.6% reduction)
+
+[188/219] Processing: MOM_S DAY/123.png
+  ✓ Thumbnail (grid): 4.2KB (99.9% reduction)
+  ✓ High-res (placement): 264.7KB (95.3% reduction)
+
+[189/219] Processing: MOM_S DAY/124.png
+  ✓ Thumbnail (grid): 6.3KB (99.9% reduction)
+  ✓ High-res (placement): 324.8KB (94.7% reduction)
+
+[190/219] Processing: RETRO/208.png
+  ✓ Thumbnail (grid): 4.0KB (99.5% reduction)
+  ✓ High-res (placement): 132.2KB (82.9% reduction)
+
+[191/219] Processing: RETRO/203.png
+  ✓ Thumbnail (grid): 4.4KB (99.5% reduction)
+  ✓ High-res (placement): 183.1KB (78.0% reduction)
+
+[192/219] Processing: RETRO/210.png
+  ✓ Thumbnail (grid): 2.2KB (100.0% reduction)
+  ✓ High-res (placement): 174.2KB (97.1% reduction)
+
+[193/219] Processing: RETRO/202.png
+  ✓ Thumbnail (grid): 5.1KB (99.9% reduction)
+  ✓ High-res (placement): 392.1KB (94.6% reduction)
+
+[194/219] Processing: RETRO/204.png
+  ✓ Thumbnail (grid): 4.9KB (99.2% reduction)
+  ✓ High-res (placement): 142.3KB (76.9% reduction)
+
+[195/219] Processing: RETRO/209.png
+  ✓ Thumbnail (grid): 5.1KB (99.2% reduction)
+  ✓ High-res (placement): 158.5KB (76.2% reduction)
+
+[196/219] Processing: RETRO/207.png
+  ✓ Thumbnail (grid): 4.2KB (99.2% reduction)
+  ✓ High-res (placement): 130.5KB (76.8% reduction)
+
+[197/219] Processing: RETRO/205.png
+  ✓ Thumbnail (grid): 4.6KB (99.3% reduction)
+  ✓ High-res (placement): 160.2KB (75.4% reduction)
+
+[198/219] Processing: RETRO/206.png
+  ✓ Thumbnail (grid): 4.7KB (99.5% reduction)
+  ✓ High-res (placement): 166.7KB (81.7% reduction)
+
+[199/219] Processing: RETRO/201.png
+  ✓ Thumbnail (grid): 7.4KB (99.7% reduction)
+  ✓ High-res (placement): 344.5KB (84.6% reduction)
+
+[200/219] Processing: CARTOON/37.png
+  ✓ Thumbnail (grid): 4.7KB (99.9% reduction)
+  ✓ High-res (placement): 354.8KB (95.7% reduction)
+
+[201/219] Processing: CARTOON/38.png
+  ✓ Thumbnail (grid): 4.7KB (99.9% reduction)
+  ✓ High-res (placement): 248.9KB (94.4% reduction)
+
+[202/219] Processing: CARTOON/39.png
+  ✓ Thumbnail (grid): 6.1KB (99.9% reduction)
+  ✓ High-res (placement): 482.1KB (95.1% reduction)
+
+[203/219] Processing: CARTOON/40.png
+  ✓ Thumbnail (grid): 4.1KB (99.9% reduction)
+  ✓ High-res (placement): 314.5KB (95.4% reduction)
+
+[204/219] Processing: CARTOON/31.png
+  ✓ Thumbnail (grid): 3.6KB (99.9% reduction)
+  ✓ High-res (placement): 156.1KB (95.0% reduction)
+
+[205/219] Processing: CARTOON/32.png
+  ✓ Thumbnail (grid): 5.0KB (99.9% reduction)
+  ✓ High-res (placement): 382.9KB (95.6% reduction)
+
+[206/219] Processing: CARTOON/35.png
+  ✓ Thumbnail (grid): 3.9KB (99.9% reduction)
+  ✓ High-res (placement): 217.1KB (95.2% reduction)
+
+[207/219] Processing: CARTOON/36.png
+  ✓ Thumbnail (grid): 3.8KB (99.9% reduction)
+  ✓ High-res (placement): 332.5KB (90.8% reduction)
+
+[208/219] Processing: CARTOON/34.png
+  ✓ Thumbnail (grid): 2.9KB (99.9% reduction)
+  ✓ High-res (placement): 184.7KB (95.5% reduction)
+
+[209/219] Processing: CARTOON/33.png
+  ✓ Thumbnail (grid): 4.3KB (99.9% reduction)
+  ✓ High-res (placement): 343.0KB (95.4% reduction)
+
+[210/219] Processing: DAD_S DAY/75.png
+  ✓ Thumbnail (grid): 3.3KB (99.3% reduction)
+  ✓ High-res (placement): 104.3KB (78.9% reduction)
+
+[211/219] Processing: DAD_S DAY/74.png
+  ✓ Thumbnail (grid): 3.1KB (99.2% reduction)
+  ✓ High-res (placement): 95.2KB (74.4% reduction)
+
+[212/219] Processing: DAD_S DAY/73.png
+  ✓ Thumbnail (grid): 3.0KB (99.2% reduction)
+  ✓ High-res (placement): 100.4KB (74.1% reduction)
+
+[213/219] Processing: DAD_S DAY/72.png
+  ✓ Thumbnail (grid): 6.1KB (99.9% reduction)
+  ✓ High-res (placement): 366.2KB (95.1% reduction)
+
+[214/219] Processing: DAD_S DAY/79.png
+  ✓ Thumbnail (grid): 2.7KB (99.2% reduction)
+  ✓ High-res (placement): 68.2KB (80.0% reduction)
+
+[215/219] Processing: DAD_S DAY/77.png
+  ✓ Thumbnail (grid): 5.0KB (99.0% reduction)
+  ✓ High-res (placement): 188.8KB (61.2% reduction)
+
+[216/219] Processing: DAD_S DAY/71.png
+  ✓ Thumbnail (grid): 4.5KB (99.9% reduction)
+  ✓ High-res (placement): 303.6KB (94.3% reduction)
+
+[217/219] Processing: DAD_S DAY/78.png
+  ✓ Thumbnail (grid): 4.4KB (99.4% reduction)
+  ✓ High-res (placement): 142.6KB (81.6% reduction)
+
+[218/219] Processing: DAD_S DAY/80.png
+  ✓ Thumbnail (grid): 4.4KB (99.9% reduction)
+  ✓ High-res (placement): 267.9KB (96.2% reduction)
+
+[219/219] Processing: DAD_S DAY/76.png
+  ✓ Thumbnail (grid): 2.2KB (99.2% reduction)
+  ✓ High-res (placement): 46.2KB (82.7% reduction)
+
+------------------------------------------------------------
+📊 OPTIMIZATION SUMMARY
+------------------------------------------------------------
+Total images processed: 219
+Successful: 219
+Failed: 0
+
+Original total size: 1022.7 MB
+Thumbnail total size (grid): 0.9 MB
+High-res total size (placement): 60.9 MB
+Combined optimized size: 61.9 MB
+
+💾 Total size reduction: 94.0%
+💰 Space saved: 960.8 MB
+
+📱 Grid browsing: Only ~0.9 MB loaded (thumbnails)
+🎨 High-quality placement: 60.9 MB available on-demand
+
+✅ Optimization complete!
+
+📝 Next steps:
+   1. Thumbnails are used for grid display (ultra-fast)
+   2. High-res versions load when stickers are placed
+   3. Originals kept as fallback

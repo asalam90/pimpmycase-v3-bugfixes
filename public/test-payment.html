@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Test - PimpMyCase</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background: #000;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Payment Test Page</h1>
+    <p>Test Stripe payment integration</p>
+
+    <form id="testForm">
+        <div class="form-group">
+            <label>Name *</label>
+            <input type="text" id="name" value="Test User" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" value="test@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" id="phone" value="1234567890" required>
+        </div>
+
+        <div class="form-group">
+            <label>Address Line 1 *</label>
+            <input type="text" id="address1" value="123 Test Street" required>
+        </div>
+
+        <div class="form-group">
+            <label>City *</label>
+            <input type="text" id="city" value="London" required>
+        </div>
+
+        <div class="form-group">
+            <label>Postcode *</label>
+            <input type="text" id="postcode" value="SW1A 1AA" required>
+        </div>
+
+        <button type="submit" id="payBtn">Pay £19.99 with Stripe</button>
+    </form>
+
+    <div id="status"></div>
+
+    <script>
+        const API_URL = window.location.hostname === 'localhost'
+            ? 'http://localhost:8000'
+            : `http://${window.location.hostname}:8000`;
+
+        console.log('API URL:', API_URL);
+
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const payBtn = document.getElementById('payBtn');
+            const statusDiv = document.getElementById('status');
+
+            payBtn.disabled = true;
+            payBtn.textContent = 'Processing...';
+            statusDiv.innerHTML = '';
+
+            try {
+                const response = await fetch(`${API_URL}/create-checkout-session`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount_pence: 1999,
+                        template_id: 'test',
+                        brand: 'iPhone',
+                        model: 'iPhone 15',
+                        color: 'Black',
+                        customer_name: document.getElementById('name').value,
+                        customer_email: document.getElementById('email').value,
+                        customer_phone: document.getElementById('phone').value,
+                        shipping_address_line1: document.getElementById('address1').value,
+                        shipping_city: document.getElementById('city').value,
+                        shipping_postcode: document.getElementById('postcode').value,
+                        shipping_country: 'United Kingdom'
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (response.ok && data.checkout_url) {
+                    statusDiv.innerHTML = `
+                        <div class="status success">
+                            <strong>✅ Success!</strong> Redirecting to Stripe...
+                        </div>
+                    `;
+
+                    setTimeout(() => {
+                        window.location.href = data.checkout_url;
+                    }, 1000);
+                } else {
+                    throw new Error(data.detail || 'Payment setup failed');
+                }
+            } catch (error) {
+                console.error('Payment error:', error);
+                statusDiv.innerHTML = `
+                    <div class="status error">
+                        <strong>❌ Error:</strong> ${error.message}
+                    </div>
+                `;
+                payBtn.disabled = false;
+                payBtn.textContent = 'Pay £19.99 with Stripe';
+            }
+        });
+    </script>
+</body>
+</html>

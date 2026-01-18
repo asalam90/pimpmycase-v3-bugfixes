@@ -1,0 +1,98 @@
+# PimpMyCase Webstore - Render Blueprint
+# Backend API only - Frontend hosted separately on Hostinger (pimpmycase.co.uk)
+# IMPORTANT: Uses SAME database as pimpmycase.onrender.com (set DATABASE_URL manually)
+
+services:
+  - type: web
+    name: pimpmycase-webstore
+    runtime: python
+    plan: free  # Free tier available, Starter recommended for production ($7/month)
+    region: oregon  # Match database region
+    buildCommand: bash render-build-backend.sh
+    startCommand: bash start-render.sh
+
+    # Auto-deploy on git push
+    autoDeploy: true
+
+    # Health check endpoint
+    healthCheckPath: /health
+
+    # Environment variables
+    envVars:
+      # Python Runtime
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+      # Environment
+      - key: ENVIRONMENT
+        value: production
+
+      - key: DEBUG
+        value: false
+
+      # Database - Using SAME database as pimpmycase.onrender.com
+      # This ensures both deployments share the same data
+      - key: DATABASE_URL
+        sync: false  # Set manually in Render Dashboard
+
+      # OpenAI API Configuration
+      # IMPORTANT: Set this in Render Dashboard
+      - key: OPENAI_API_KEY
+        sync: false
+
+      # Stripe Payment Configuration
+      # IMPORTANT: Use LIVE keys for production
+      - key: STRIPE_SECRET_KEY
+        sync: false
+
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+
+      # JWT Security Configuration
+      # IMPORTANT: Set secure key in dashboard
+      - key: JWT_SECRET_KEY
+        sync: false
+
+      # Cloudflare R2 Storage Configuration
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+
+      - key: R2_ENDPOINT_URL
+        sync: false
+
+      - key: R2_BUCKET_NAME
+        value: pimpmycase-newstickers
+
+      # Frontend URL - Hosted on Hostinger
+      - key: FRONTEND_URL
+        value: https://pimpmycase.co.uk
+
+      # Chinese API Configuration
+      # PRODUCTION MODE: Using real Chinese API
+      - key: CHINESE_API_BASE_URL
+        value: https://api.inkele.net/mobileShell/en
+
+      # IMPORTANT: Set these securely in Render Dashboard
+      - key: CHINESE_API_ACCOUNT
+        sync: false  # Set in Render Dashboard: taharizvi.ai@gmail.com
+
+      - key: CHINESE_API_PASSWORD
+        sync: false  # Set in Render Dashboard
+
+      - key: CHINESE_API_DEVICE_ID
+        value: JMSOOMSZRQO9
+
+      - key: CHINESE_API_SYSTEM_NAME
+        value: mobileShell
+
+      - key: CHINESE_API_FIXED_KEY
+        sync: false  # Set in Render Dashboard
+
+      - key: CHINESE_API_TIMEOUT
+        value: 30

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator - PimpMyCase Testing</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #qrcode {
+      margin-top: 30px;
+      text-align: center;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 5px;
+    }
+    #qrcode canvas {
+      border: 2px solid #ddd;
+      border-radius: 5px;
+    }
+    .url-display {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 5px;
+      word-break: break-all;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .info-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e3f2fd;
+      border-left: 4px solid #2196F3;
+      border-radius: 5px;
+    }
+    .info-box h3 {
+      margin-top: 0;
+      color: #1976D2;
+    }
+    .info-box ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 PimpMyCase QR Code Generator</h1>
+    <p class="subtitle">Generate QR codes for testing entry point detection</p>
+
+    <div class="input-group">
+      <label for="baseUrl">Base URL:</label>
+      <select id="baseUrl">
+        <option value="http://localhost:5173">Local Dev (http://localhost:5173)</option>
+        <option value="https://pimpmycase.co.uk">Production (https://pimpmycase.co.uk)</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="machineId">Machine ID:</label>
+      <input type="text" id="machineId" placeholder="e.g., MACHINE_001, LONDON_MALL_01" value="TEST_MACHINE_123">
+    </div>
+
+    <div class="input-group">
+      <label for="sessionId">Session ID (optional):</label>
+      <input type="text" id="sessionId" placeholder="e.g., SESSION_001" value="SESSION_456">
+    </div>
+
+    <div class="input-group">
+      <label for="location">Location (optional):</label>
+      <input type="text" id="location" placeholder="e.g., London Mall, Manchester Store">
+    </div>
+
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <div id="qrcode"></div>
+    <div id="urlDisplay" class="url-display" style="display:none;"></div>
+
+    <div class="info-box">
+      <h3>📱 How to Test:</h3>
+      <ul>
+        <li><strong>Desktop:</strong> Click the generated URL to open in browser</li>
+        <li><strong>Mobile:</strong> Scan the QR code with your phone camera</li>
+        <li><strong>Check Console:</strong> Look for "QR Entry detected" message</li>
+        <li><strong>Check LocalStorage:</strong> DevTools → Application → Local Storage → appState</li>
+      </ul>
+
+      <h3>✅ What Should Happen:</h3>
+      <ul>
+        <li>Entry source set to "qr"</li>
+        <li>Machine ID stored in vending machine session</li>
+        <li>Payment screen shows "Collect from Machine" notice</li>
+        <li>No address form required (QR entry)</li>
+      </ul>
+
+      <h3>🔄 Compare with Vanilla Entry:</h3>
+      <ul>
+        <li>Navigate to <code>http://localhost:5173</code> (no params)</li>
+        <li>Entry source should be "vanilla"</li>
+        <li>Payment screen requires full delivery address</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function generateQR() {
+      const baseUrl = document.getElementById('baseUrl').value;
+      const machineId = document.getElementById('machineId').value.trim();
+      const sessionId = document.getElementById('sessionId').value.trim();
+      const location = document.getElementById('location').value.trim();
+
+      if (!machineId) {
+        alert('Please enter a Machine ID');
+        return;
+      }
+
+      // Build URL with parameters
+      let url = `${baseUrl}/?qr=true&machine_id=${encodeURIComponent(machineId)}`;
+
+      if (sessionId) {
+        url += `&session_id=${encodeURIComponent(sessionId)}`;
+      }
+
+      if (location) {
+        url += `&location=${encodeURIComponent(location)}`;
+      }
+
+      // Clear previous QR code
+      document.getElementById('qrcode').innerHTML = '';
+
+      // Generate QR code
+      QRCode.toCanvas(url, {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#ffffff'
+        }
+      }, function (error, canvas) {
+        if (error) {
+          console.error(error);
+          alert('Error generating QR code');
+          return;
+        }
+
+        const container = document.getElementById('qrcode');
+        container.appendChild(canvas);
+
+        // Add download button
+        const downloadBtn = document.createElement('button');
+        downloadBtn.textContent = 'Download QR Code';
+        downloadBtn.style.marginTop = '15px';
+        downloadBtn.onclick = function() {
+          const link = document.createElement('a');
+          link.download = `qr-${machineId}.png`;
+          link.href = canvas.toDataURL();
+          link.click();
+        };
+        container.appendChild(downloadBtn);
+
+        // Add clickable link
+        const linkBtn = document.createElement('button');
+        linkBtn.textContent = 'Open URL in Browser';
+        linkBtn.style.marginLeft = '10px';
+        linkBtn.onclick = function() {
+          window.open(url, '_blank');
+        };
+        container.appendChild(linkBtn);
+
+        // Display URL
+        const urlDisplay = document.getElementById('urlDisplay');
+        urlDisplay.textContent = url;
+        urlDisplay.style.display = 'block';
+      });
+    }
+
+    // Generate default QR on page load
+    window.onload = function() {
+      generateQR();
+    };
+  </script>
+</body>
+</html>
