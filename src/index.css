@@ -59,30 +59,34 @@
   /* Mobile-first container - app is designed for mobile, constrain on desktop */
   .mobile-app-container {
     width: 100%;
-    max-width: 480px; /* Mobile viewport width */
+    max-width: 100%; /* Full width on mobile */
     margin: 0 auto;
     min-height: 100vh;
     min-height: 100dvh;
     background-color: #ffffff;
     position: relative;
     box-shadow: none;
+    overflow-x: hidden;
   }
 
-  /* On larger screens, add visual boundaries */
-  @media (min-width: 520px) {
-    body {
-      background-color: #f0f0f0; /* Gray background outside app */
-    }
-
-    .mobile-app-container {
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  /* Slightly wider on tablets for better touch targets */
+  /* On larger screens (desktop), constrain to mobile-like width */
   @media (min-width: 768px) {
+    body {
+      background-color: #e8e8e8; /* Gray background outside app */
+    }
+
     .mobile-app-container {
-      max-width: 428px; /* iPhone Pro Max width */
+      max-width: 540px; /* Comfortable mobile width with padding */
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.15);
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+  }
+
+  /* Even larger screens - keep same width, just centered */
+  @media (min-width: 1024px) {
+    .mobile-app-container {
+      max-width: 540px;
     }
   }
   
