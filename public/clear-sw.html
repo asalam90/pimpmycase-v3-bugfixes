@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clear Service Worker</title>
+</head>
+<body>
+  <h1>Clearing Service Worker...</h1>
+  <div id="status"></div>
+  <script>
+    const status = document.getElementById('status');
+    
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        if (registrations.length === 0) {
+          status.innerHTML = '<p style="color: green;">No service workers found.</p>';
+          setTimeout(() => window.location.href = '/', 2000);
+          return;
+        }
+        
+        Promise.all(registrations.map(registration => registration.unregister()))
+          .then(() => {
+            status.innerHTML = '<p style="color: green;">Service worker cleared! Redirecting...</p>';
+            caches.keys().then(names => {
+              return Promise.all(names.map(name => caches.delete(name)));
+            }).then(() => {
+              setTimeout(() => window.location.href = '/', 2000);
+            });
+          });
+      });
+    } else {
+      status.innerHTML = '<p>Service workers not supported.</p>';
+      setTimeout(() => window.location.href = '/', 2000);
+    }
+  </script>
+</body>
+</html>

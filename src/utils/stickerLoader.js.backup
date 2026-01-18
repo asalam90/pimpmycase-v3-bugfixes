@@ -1,0 +1,406 @@
+// Utility to load stickers from Cloudflare R2
+// Stickers can be loaded directly from R2 (fast) or via backend proxy (slower fallback)
+import { API_BASE_URL } from '../config/environment'
+
+// R2 Public URL (if configured) - much faster than backend proxy
+const R2_PUBLIC_URL = import.meta.env.VITE_R2_PUBLIC_URL || null
+
+// Use direct R2 URL if available, otherwise fallback to backend proxy
+const USE_DIRECT_R2 = !!R2_PUBLIC_URL
+
+export const STICKER_CATEGORIES = {
+  alien: {
+    name: "Alien Pack",
+    icon: "👽",
+    folder: "ALIEN",
+    stickers: [
+      { filename: "1.png", name: "Alien 1" },
+      { filename: "4.png", name: "Alien 2" },
+      { filename: "5.png", name: "Alien 3" },
+      { filename: "10.png", name: "Alien 4" }
+    ]
+  },
+  british: {
+    name: "British Pack",
+    icon: "🇬🇧",
+    folder: "BRITISH",
+    stickers: [
+      { filename: "23.png", name: "British 1" },
+      { filename: "24.png", name: "British 2" },
+      { filename: "27.png", name: "British 3" },
+      { filename: "28.png", name: "British 4" },
+      { filename: "29.png", name: "British 5" }
+    ]
+  },
+  cartoon: {
+    name: "Cartoon Pack",
+    icon: "🎨",
+    folder: "CARTOON",
+    stickers: [
+      { filename: "32.png", name: "Cartoon 1" },
+      { filename: "33.png", name: "Cartoon 2" },
+      { filename: "34.png", name: "Cartoon 3" },
+      { filename: "36.png", name: "Cartoon 4" },
+      { filename: "37.png", name: "Cartoon 5" },
+      { filename: "38.png", name: "Cartoon 6" }
+    ]
+  },
+  cute: {
+    name: "Cute Pack",
+    icon: "🥰",
+    folder: "CUTE",
+    stickers: [
+      { filename: "63.png", name: "Cute 1" },
+      { filename: "64.png", name: "Cute 2" },
+      { filename: "65.png", name: "Cute 3" },
+      { filename: "66.png", name: "Cute 4" },
+      { filename: "67.png", name: "Cute 5" },
+      { filename: "70.png", name: "Cute 6" }
+    ]
+  },
+  mamasAndPapas: {
+    name: "Mamas and Papas Pack",
+    icon: "👨‍👩‍👧‍👦",
+    folder: "MAMAS_AND_PAPAS",
+    stickers: [
+      { filename: "73.png", name: "Mamas and Papas 1", sourceFolder: "DAD_S DAY" },
+      { filename: "74.png", name: "Mamas and Papas 2", sourceFolder: "DAD_S DAY" },
+      { filename: "75.png", name: "Mamas and Papas 3", sourceFolder: "DAD_S DAY" },
+      { filename: "124.png", name: "Mamas and Papas 4", sourceFolder: "MOM_S DAY" },
+      { filename: "125.png", name: "Mamas and Papas 5", sourceFolder: "MOM_S DAY" },
+      { filename: "129.png", name: "Mamas and Papas 6", sourceFolder: "MOM_S DAY" }
+    ]
+  },
+  emojis: {
+    name: "Emojis Pack",
+    icon: "😀",
+    folder: "EMOJIS",
+    stickers: [
+      { filename: "82.png", name: "Emojis 1" },
+      { filename: "83.png", name: "Emojis 2" },
+      { filename: "86.png", name: "Emojis 3" },
+      { filename: "88.png", name: "Emojis 4" },
+      { filename: "89.png", name: "Emojis 5" }
+    ]
+  },
+  graffiti: {
+    name: "Graffiti Pack",
+    icon: "🎨",
+    folder: "GRAFITTI",
+    stickers: [
+      { filename: "103.png", name: "Graffiti 1" },
+      { filename: "105.png", name: "Graffiti 2" },
+      { filename: "108.png", name: "Graffiti 3" },
+      { filename: "109.png", name: "Graffiti 4" },
+      { filename: "110.png", name: "Graffiti 5" }
+    ]
+  },
+  jesus: {
+    name: "Jesus Pack",
+    icon: "✝️",
+    folder: "JESUS",
+    stickers: [
+      { filename: "111.png", name: "Jesus 1" },
+      { filename: "112.png", name: "Jesus 2" },
+      { filename: "113.png", name: "Jesus 3" },
+      { filename: "114.png", name: "Jesus 4" },
+      { filename: "115.png", name: "Jesus 5" },
+      { filename: "117.png", name: "Jesus 6" },
+      { filename: "118.png", name: "Jesus 7" }
+    ]
+  },
+  monsters: {
+    name: "Monsters Pack",
+    icon: "👹",
+    folder: "MONSTERS",
+    stickers: [
+      { filename: "131.png", name: "Monsters 1" },
+      { filename: "133.png", name: "Monsters 2" },
+      { filename: "134.png", name: "Monsters 3" },
+      { filename: "135.png", name: "Monsters 4" },
+      { filename: "136.png", name: "Monsters 5" },
+      { filename: "137.png", name: "Monsters 6" },
+      { filename: "139.png", name: "Monsters 7" },
+      { filename: "140.png", name: "Monsters 8" }
+    ]
+  },
+  skull: {
+    name: "Skull Pack",
+    icon: "💀",
+    folder: "SKULL",
+    stickers: [
+      { filename: "141.png", name: "Skull 1" },
+      { filename: "144.png", name: "Skull 2" },
+      { filename: "145.png", name: "Skull 3" },
+      { filename: "146.png", name: "Skull 4" },
+      { filename: "147.png", name: "Skull 5" },
+      { filename: "148.png", name: "Skull 6" },
+      { filename: "149.png", name: "Skull 7" },
+      { filename: "150.png", name: "Skull 8" }
+    ]
+  },
+  love: {
+    name: "Love Pack",
+    icon: "💕",
+    folder: "VALENTINE_S DAY",
+    stickers: [
+      { filename: "151.png", name: "Love 1" },
+      { filename: "155.png", name: "Love 2" },
+      { filename: "156.png", name: "Love 3" },
+      { filename: "157.png", name: "Love 4" },
+      { filename: "158.png", name: "Love 5" },
+      { filename: "159.png", name: "Love 6" },
+      { filename: "160.png", name: "Love 7" }
+    ]
+  },
+  space: {
+    name: "Space Pack",
+    icon: "🚀",
+    folder: "SPACE",
+    stickers: [
+      { filename: "181.png", name: "Space 1" },
+      { filename: "182.png", name: "Space 2" },
+      { filename: "183.png", name: "Space 3" },
+      { filename: "184.png", name: "Space 4" },
+      { filename: "189.png", name: "Space 5" },
+      { filename: "190.png", name: "Space 6" }
+    ]
+  },
+  rock: {
+    name: "Rock Pack",
+    icon: "🎸",
+    folder: "ROCK",
+    stickers: [
+      { filename: "191.png", name: "Rock 1" },
+      { filename: "192.png", name: "Rock 2" },
+      { filename: "193.png", name: "Rock 3" },
+      { filename: "194.png", name: "Rock 4" },
+      { filename: "198.png", name: "Rock 5" },
+      { filename: "199.png", name: "Rock 6" },
+      { filename: "200.png", name: "Rock 7" }
+    ]
+  },
+  retro: {
+    name: "Retro Pack",
+    icon: "📼",
+    folder: "RETRO",
+    stickers: [
+      { filename: "201.png", name: "Retro 1" },
+      { filename: "202.png", name: "Retro 2" },
+      { filename: "203.png", name: "Retro 3" },
+      { filename: "204.png", name: "Retro 4" },
+      { filename: "206.png", name: "Retro 5" },
+      { filename: "207.png", name: "Retro 6" },
+      { filename: "208.png", name: "Retro 7" },
+      { filename: "209.png", name: "Retro 8" },
+      { filename: "210.png", name: "Retro 9" }
+    ]
+  },
+  popArt: {
+    name: "Pop Art Pack",
+    icon: "🎨",
+    folder: "POP ART",
+    stickers: [
+      { filename: "221.png", name: "Pop Art 1" },
+      { filename: "223.png", name: "Pop Art 2" },
+      { filename: "225.png", name: "Pop Art 3" },
+      { filename: "226.png", name: "Pop Art 4" },
+      { filename: "229.png", name: "Pop Art 5" },
+      { filename: "230.png", name: "Pop Art 6" }
+    ]
+  },
+  cat: {
+    name: "Cat Pack",
+    icon: "🐱",
+    folder: "CAT",
+    stickers: [
+      { filename: "232.png", name: "Cat 1" },
+      { filename: "233.png", name: "Cat 2" },
+      { filename: "234.png", name: "Cat 3" },
+      { filename: "237.png", name: "Cat 4" },
+      { filename: "238.png", name: "Cat 5" },
+      { filename: "239.png", name: "Cat 6" },
+      { filename: "240.png", name: "Cat 7" }
+    ]
+  },
+  dog: {
+    name: "Dog Pack",
+    icon: "🐶",
+    folder: "DOG",
+    stickers: [
+      { filename: "241.png", name: "Dog 1" },
+      { filename: "242.png", name: "Dog 2" },
+      { filename: "243.png", name: "Dog 3" },
+      { filename: "244.png", name: "Dog 4" },
+      { filename: "245.png", name: "Dog 5" },
+      { filename: "247.png", name: "Dog 6" },
+      { filename: "248.png", name: "Dog 7" },
+      { filename: "249.png", name: "Dog 8" },
+      { filename: "250.png", name: "Dog 9" }
+    ]
+  },
+  hiphop: {
+    name: "Hip Hop Pack",
+    icon: "🎤",
+    folder: "HIPHOP",
+    stickers: [
+      { filename: "251.png", name: "Hip Hop 1" },
+      { filename: "252.png", name: "Hip Hop 2" },
+      { filename: "253.png", name: "Hip Hop 3" },
+      { filename: "254.png", name: "Hip Hop 4" },
+      { filename: "255.png", name: "Hip Hop 5" },
+      { filename: "259.png", name: "Hip Hop 6" },
+      { filename: "260.png", name: "Hip Hop 7" }
+    ]
+  }
+}
+
+// Convert sticker categories to the format expected by AddStickersScreen
+export const getImageStickerPacks = () => {
+  return Object.entries(STICKER_CATEGORIES).map(([category, data]) => ({
+    name: data.name,
+    icon: data.icon,
+    key: category, // Add key for lazy loading
+    folder: data.folder, // Store folder for URL generation
+    stickers: data.stickers.map((sticker, index) => {
+      const webpFilename = sticker.filename.replace('.png', '.webp')
+      // Use sourceFolder if available (for merged packs), otherwise use main folder
+      const folder = sticker.sourceFolder || data.folder
+
+      // Generate URLs - use direct R2 if available (MUCH faster), otherwise backend proxy
+      const thumbnailUrl = USE_DIRECT_R2
+        ? `${R2_PUBLIC_URL}/Stickers/${folder}/highres/${webpFilename}`
+        : `${API_BASE_URL}/api/stickers/image/${folder}/highres/${webpFilename}`
+
+      const highresUrl = USE_DIRECT_R2
+        ? `${R2_PUBLIC_URL}/Stickers/${folder}/highres/${webpFilename}`
+        : `${API_BASE_URL}/api/stickers/image/${folder}/highres/${webpFilename}`
+
+      const fallbackUrl = USE_DIRECT_R2
+        ? `${R2_PUBLIC_URL}/Stickers/${folder}/${sticker.filename}`
+        : `${API_BASE_URL}/api/stickers/image/${folder}/${sticker.filename}`
+
+      return {
+        id: `${category}_${index + 1}`,
+        name: sticker.name,
+        folder: folder,
+        webpFilename: webpFilename,
+        originalFilename: sticker.filename,
+        thumbnailUrl,
+        highresUrl,
+        fallbackUrl,
+        type: 'image'
+      }
+    })
+  }))
+}
+
+// Log which mode we're using
+if (USE_DIRECT_R2) {
+  console.log('🚀 Using DIRECT R2 loading (fast) from:', R2_PUBLIC_URL)
+} else {
+  console.log('⚠️ Using backend proxy (slower). Set VITE_R2_PUBLIC_URL for faster loading.')
+}
+
+// Fetch presigned URLs for a specific pack (much faster than proxying)
+export const fetchPresignedUrlsForPack = async (pack) => {
+  try {
+    const folder = pack.folder
+
+    // Fetch presigned URLs for all stickers in this pack
+    const urlPromises = pack.stickers.map(async (sticker) => {
+      try {
+        // Get presigned URLs for thumbnail, highres, and fallback
+        const [thumbnailRes, highresRes, fallbackRes] = await Promise.all([
+          fetch(`${API_BASE_URL}/api/stickers/url/${folder}/thumbnails/${sticker.webpFilename}?expires_in=86400`).catch(() => null),
+          fetch(`${API_BASE_URL}/api/stickers/url/${folder}/highres/${sticker.webpFilename}?expires_in=86400`).catch(() => null),
+          fetch(`${API_BASE_URL}/api/stickers/url/${folder}/${sticker.originalFilename}?expires_in=86400`).catch(() => null)
+        ])
+
+        const thumbnailData = thumbnailRes?.ok ? await thumbnailRes.json() : null
+        const highresData = highresRes?.ok ? await highresRes.json() : null
+        const fallbackData = fallbackRes?.ok ? await fallbackRes.json() : null
+
+        return {
+          ...sticker,
+          thumbnailUrl: thumbnailData?.url || null,
+          highresUrl: highresData?.url || null,
+          fallbackUrl: fallbackData?.url || null
+        }
+      } catch (error) {
+        console.warn(`Failed to get URLs for ${sticker.name}:`, error)
+        return sticker
+      }
+    })
+
+    const stickersWithUrls = await Promise.all(urlPromises)
+
+    return {
+      ...pack,
+      stickers: stickersWithUrls
+    }
+  } catch (error) {
+    console.error(`Error fetching presigned URLs for pack:`, error)
+    return pack
+  }
+}
+
+// Helper to get thumbnail or full image URL from R2 via backend API
+const getStickerUrl = (folder, filename, useThumbnail = true) => {
+  const name = filename.replace('.png', '.webp') // Prefer WebP if available
+
+  if (useThumbnail) {
+    // Try thumbnail first from R2
+    return `${API_BASE_URL}/api/stickers/image/${folder}/thumbnails/${name}`
+  }
+  return `${API_BASE_URL}/api/stickers/image/${folder}/${filename}`
+}
+
+// Function to preload stickers for a specific pack (lazy loading)
+export const preloadStickerPack = async (packKey) => {
+  if (!STICKER_CATEGORIES[packKey]) {
+    console.warn(`⚠️ Sticker pack not found: ${packKey}`)
+    return []
+  }
+
+  const pack = STICKER_CATEGORIES[packKey]
+  const preloadPromises = pack.stickers.map(sticker => {
+    return new Promise((resolve) => {
+      const img = new Image()
+      const thumbnailUrl = getStickerUrl(pack.folder, sticker.filename, true)
+
+      img.onload = () => resolve({ success: true, url: thumbnailUrl })
+      img.onerror = () => {
+        // Fallback to original if thumbnail fails
+        const fallbackImg = new Image()
+        const originalUrl = getStickerUrl(pack.folder, sticker.filename, false)
+        fallbackImg.onload = () => resolve({ success: true, url: originalUrl, fallback: true })
+        fallbackImg.onerror = () => resolve({ success: false, url: originalUrl })
+        fallbackImg.src = originalUrl
+      }
+      img.src = thumbnailUrl
+    })
+  })
+
+  try {
+    const results = await Promise.all(preloadPromises)
+    const successful = results.filter(r => r.success).length
+    console.log(`✅ Loaded ${successful}/${results.length} stickers for ${pack.name}`)
+    return results
+  } catch (error) {
+    console.warn(`⚠️ Error loading sticker pack ${pack.name}:`, error)
+    return []
+  }
+}
+
+// REMOVED: Eager preloading function - now using lazy loading per pack
+
+// Function to check if a sticker image exists
+export const checkStickerExists = async (imageUrl) => {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => resolve(true)
+    img.onerror = () => resolve(false)
+    img.src = imageUrl
+  })
+}

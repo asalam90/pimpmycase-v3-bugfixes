@@ -1,0 +1,466 @@
+/* Import TeX Gyre Heros from Google Fonts CDN */
+@import url('https://fonts.cdnfonts.com/css/tex-gyre-heros');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futura Bold font */
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Heavy font */
+@font-face {
+  font-family: 'Futura Heavy';
+  src: url('/fonts/Futura Heavy.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Medium Condensed font */
+@font-face {
+  font-family: 'Futura Medium Condensed';
+  src: url('/fonts/Futura Medium Condensed.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Light font */
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins Light font */
+@font-face {
+  font-family: 'PoppinsLight';
+  src: url('/fonts/Poppins-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    letter-spacing: 1.5px !important; /* Ensure consistent character spacing across app */
+  }
+  
+  html {
+    font-family: 'Futura', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
+    background: #ffffff;
+    overscroll-behavior: none;
+    touch-action: pan-x pan-y;
+  }
+
+  #root {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Use Futura Heavy for standard heading tags */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Futura Heavy', 'Futura', sans-serif;
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold py-4 px-8 rounded-2xl shadow-lg active:scale-95 transition-all duration-200 touch-manipulation;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 font-medium py-4 px-6 rounded-2xl shadow-md border border-gray-200 active:scale-95 transition-all duration-200 touch-manipulation;
+  }
+  
+  .phone-option {
+    @apply bg-white rounded-3xl p-6 shadow-lg border-2 border-transparent active:scale-95 transition-all duration-200 touch-manipulation;
+  }
+  
+  .phone-option.selected {
+    @apply border-pink-500 bg-pink-50;
+  }
+  
+  .screen-container {
+    /* Allow dropdowns and other popups to extend beyond the viewport vertically */
+    @apply min-h-screen flex flex-col animate-fade-in relative overflow-x-hidden;
+    overflow-y: visible;
+    background: #ffffff;
+  }
+  
+  .phone-case-image {
+    @apply w-full h-full;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .phone-case-image-contain {
+    @apply w-full h-full;
+    object-fit: contain;
+    object-position: center;
+    background-color: transparent;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  /* Phone template positioning - easy to adjust */
+  .phone-case-content {
+    position: absolute;
+    top: 1px;        /* Adjust this value */
+    left: 8%;       /* Adjust this value */
+    right: 8%;      /* Adjust this value */
+    bottom: 1px;     /* Adjust this value */
+    border-radius: 42px; /* Adjust this value */
+    overflow: hidden;
+  }
+
+  /* Camera-aware content clipping for iPhone 15 */
+  .phone-case-content.iphone-15 {
+    /* Using precise CAD-derived mask at public/masks/iphone15-mask.svg */
+    mask-image: url('/masks/iphone15-mask.svg');
+    mask-size: 100% 100%;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-mode: alpha;
+    -webkit-mask-image: url('/masks/iphone15-mask.svg');
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-mode: alpha;
+    /* Fallback browsers without mask-image support will see the full rectangle */
+  }
+
+  /* Camera-aware content clipping for iPhone 15 Pro */
+  .phone-case-content.iphone-15-pro {
+    /* Camera: left 6.8%, top 1.4%, width 13.5% (ends at 20.3%), height 28.5% (ends at 29.9%) */
+    clip-path: polygon(
+      /* Start top-left, trace outer boundary clockwise, then cut in for camera */
+      0% 0%,          /* Top-left corner */
+      0% 100%,        /* Bottom-left corner */
+      100% 100%,      /* Bottom-right corner */
+      100% 0%,        /* Top-right corner */
+      20.3% 0%,       /* Top edge, right side of camera */
+      20.3% 1.4%,     /* Camera top-right corner */
+      20.3% 29.9%,    /* Camera bottom-right corner */
+      6.8% 29.9%,     /* Camera bottom-left corner */
+      6.8% 1.4%,      /* Camera top-left corner */
+      6.8% 0%         /* Top edge, left side of camera */
+    );
+  }
+
+  /* Camera cutout overlay - visual indicator */
+  .camera-cutout-overlay {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px dashed rgba(255, 100, 100, 0.3);
+    z-index: 100;
+  }
+
+  /* iPhone 15 camera overlay */
+  .camera-cutout-overlay.iphone-15 {
+    top: 1.4%;
+    left: 6.8%;
+    width: 11.5%;
+    height: 26.1%;
+    border-radius: 21px;
+  }
+
+  /* iPhone 15 Pro camera overlay */
+  .camera-cutout-overlay.iphone-15-pro {
+    top: 1.4%;
+    left: 6.8%;
+    width: 13.5%;
+    height: 28.5%;
+    border-radius: 22px;
+  }
+  
+  /* Film-strip design has a much narrower safe area –
+     override the generic phone-case content bounds so that
+     user content stays inside the inner rectangle (doesn't
+     spill into the sprocket holes or rails). */
+  .phone-case-content.mask-filmstrip {
+    top: 18%;       /* pull content down below camera area  */
+    bottom: 18%;    /* leave margin at bottom               */
+    left: 28%;      /* keep clear of left sprocket rail     */
+    right: 28%;     /* keep clear of right sprocket rail    */
+    border-radius: 16px; /* tighter radius for inner photo area */
+  }
+  
+  .phone-case-preview {
+    position: absolute;
+    top: 8%;        /* Adjust this value */
+    left: 4%;       /* Adjust this value */
+    right: 4%;      /* Adjust this value */
+    bottom: 8%;     /* Adjust this value */
+    border-radius: 35px; /* Adjust this value */
+    overflow: hidden;
+  }
+  
+  .pastel-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  
+  .blob {
+    position: absolute;
+    opacity: 0.6;
+  }
+  
+  /* Dynamic blob base styles - positioning and sizing handled by React */
+  
+  /* Floating animations for dynamic blobs */
+  @keyframes float-0 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -15px) rotate(1deg); }
+    50% { transform: translate(-5px, -10px) rotate(-1deg); }
+    75% { transform: translate(-10px, 5px) rotate(0.5deg); }
+  }
+  
+  @keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-8px, -12px) rotate(-0.5deg); }
+    66% { transform: translate(12px, 8px) rotate(1deg); }
+  }
+  
+  @keyframes float-2 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(5px, -8px) rotate(0.5deg); }
+    40% { transform: translate(-10px, -5px) rotate(-1deg); }
+    60% { transform: translate(8px, 10px) rotate(0.5deg); }
+    80% { transform: translate(-3px, 12px) rotate(-0.5deg); }
+  }
+  
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
+    .pastel-blobs .blob {
+      transform: scale(0.7);
+    }
+  }
+  
+  /* Smooth horizontal scrolling for color picker */
+  .color-slider {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .color-slider::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .color-option {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+  
+  /* Smooth dropdown animations and scrolling */
+  .dropdown-menu {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+    overscroll-behavior: contain;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 2px;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(156, 163, 175, 0.7);
+  }
+  
+  .dropdown-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .dropdown-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  }
+  
+  .dropdown-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .dropdown-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  }
+  
+  /* Fade in animation for screens */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+  
+  /* Loading spinner animation */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Bounce animation */
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+      transform: translate3d(0,-15px,0);
+    }
+    70% {
+      transform: translate3d(0,-5px,0);
+    }
+    90% {
+      transform: translate3d(0,-2px,0);
+    }
+  }
+  
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+  
+  /* Pulse animation for success states */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Utility to clip any content to the phone-case silhouette */
+  .mask-phone {
+    /* Standard */
+    mask-image: url('/filmstrip-template.png');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-mode: alpha;
+    /* WebKit */
+    -webkit-mask-image: url('/filmstrip-template.png');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-mode: alpha;
+  }
+  
+  /* Clip to filmstrip silhouette (includes sprocket holes) */
+  .mask-filmstrip {
+    mask-image: url('/filmstrip.png');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-mode: alpha;
+    -webkit-mask-image: url('/filmstrip.png');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-mode: alpha;
+  }
+  
+  /* Custom z-index utilities for proper layering */
+  .z-5 {
+    z-index: 5;
+  }
+  
+  .z-15 {
+    z-index: 15;
+  }
+  
+  .z-25 {
+    z-index: 25;
+  }
+
+  /* Separate border element for phone case mockups - position independently */
+  .phone-case-border {
+    position: absolute;
+    top: 0.5%;       /* Percentage-based positioning to scale with container */
+    left: 6%;        /* Match proportions with content area positioning */
+    right: 6%;       /* Match proportions with content area positioning */
+    bottom: 0.5%;    /* Percentage-based positioning to scale with container */
+    border: 8px solid #000;
+    border-radius: 45px; /* Slightly larger than phone case */
+    /* box-shadow: inset 0 0 15px 1px rgba(0, 0, 0, 0.25); first value is horizontal offset, second is vertical offset, third is blur radius, fourth is spread radius */
+    pointer-events: none; /* Don't interfere with interactions */
+    z-index: 1; /* Ensure it's above content but below overlays */
+  }
+  
+  /* Film strip border adjustments */
+  .phone-case-border.filmstrip {
+    top: 92px;
+    left: 180px;
+    right: 180px;
+    bottom: 100px;
+    border-radius: 0px; 
+    border: 0px solid #000;
+  }
+} 
